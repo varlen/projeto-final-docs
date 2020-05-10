@@ -1,20 +1,21 @@
-\documentclass[a4paper,12pt,oneside,openany]{book}	
+\documentclass[a4paper,12pt,oneside,openany]{book}
 \input{TesePack}
+
+\newcommand{\titulo}{FERRAMENTA PARA TRATAMENTO DE INFORMA√á√ïES SENS√çVEIS EM BANCOS DE DADOS}
 
 \begin{document}
 
 \frontmatter
 \thispagestyle{empty}
 
-\input{Capa}
+\include{Capa}
 
-\pagebreak            
 
-\input{Preambulo}
+\include{Preambulo}
 
 % Table of Contents
 % ---------------------------------------------------------------
-     \tableofcontents
+\tableofcontents
 % ---------------------------------------------------------------
 % Lista de figuras
 % ---------------------------------------------------------------
@@ -30,26 +31,11 @@
 
 \mainmatter
 \cleardoublepage
-% ---------------------------------------------------------------
-% Chapter 1 - IntroduÁ„o
-% ---------------------------------------------------------------
-\chapter{IntroduÁ„o}
-\label{cap1}
-\input{cap1}
 
-% ---------------------------------------------------------------
-% Chapter 2 - InformaÁıes Adicionais
-% ---------------------------------------------------------------
-\chapter{InformaÁıes Adicionais}
-\label{cap2}
-\input{cap2}
 
-% ---------------------------------------------------------------
-% Chapter 3 - Conclusıes
-% ---------------------------------------------------------------
-\chapter{Conclusıes}
-\label{cap3}
-\input{cap3}
+\include{cap1}
+\include{cap2}
+\include{cap3}
 
 % ---------------------------------------------------------------
 % Bibliografia
@@ -60,28 +46,28 @@
 \bibliographystyle{coppe}
 \bibliography{biblio}
 
-% ---------------------------------------------------------------
-% ApÍndices 
-% ---------------------------------------------------------------
-   \appendix
-   % ---------------------------------------------------------------
-   % ApÍndice A
-   % ---------------------------------------------------------------
-   \chapter{O que È um apÍndice}
-   \label{ApendiceA}
-   \input{ApendiceA}
-   % ---------------------------------------------------------------
-   % ApÍndice B
-   % ---------------------------------------------------------------
-   \chapter{EncadernaÁ„o do Projeto de GraduaÁ„o}
-   \label{ApendiceB}
-   \input{ApendiceB}
-   % ---------------------------------------------------------------
-   % ApÍndice C
-   % ---------------------------------------------------------------
-   \chapter{O que È um anexo}
-   \label{ApendiceC}
-   \input{ApendiceC}   
+
+% Apendices 
+
+\appendix
+
+% Apendice A
+
+\chapter{O que √© um ap√™ndice}
+\label{ApendiceA}
+\include{ApendiceA}
+
+% Apendice B
+
+\chapter{Encaderna√ß√£o do Projeto de Gradua√ß√£o}
+\label{ApendiceB}
+\include{ApendiceB}
+
+% Apendice C
+
+\chapter{O que √© um anexo}
+\label{ApendiceC}
+\include{ApendiceC}
 
 \backmatter
 
