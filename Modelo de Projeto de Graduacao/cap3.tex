@@ -1,7 +1,43 @@
-\chapter{Conclusões}
+\chapter{Metodologia}
 \label{cap3}
 
-\paragraph{}Tratam-se das considerações finais do trabalho, mostrando que os objetivos foram cumpridos e enfatizando as descobertas feitas durante o projeto. Em geral reserva-se um ou dois parágrafos para sugerir trabalhos futuros.
+\section{Descoberta e Análise de ferramentas de anonimização}
 
-\paragraph{}Observe que neste modelo a conclusão é numerada pelo numeral 3, mas o projeto não tem a obrigatoriedade de possuir apenas 3 capítulos. Alias, espera-se que tenha mais que isso.
+\paragraph{}
+Para descoberta de ferramentas de anonimização neste trabalho, foram utilizados projetos de código-aberto disponíveis no GitHub. 
 
+Especificamente, foram consideradas as métricas de stars e forks dos repositórios como medida de popularidade para seleção de 4 projetos relativos a anonimização de dados. Todos os projetos apresentavam novas modificações no código-fonte em Março de 2020, indicando que são mantidos pelas comunidade. Buscou-se inferir os casos de uso, funcionalidades, usabilidade e tecnologias utilizadas a partir da documentação dos projetos. Consideradou-se a primeira linha dos arquivos README.md dos repositórios como nome do projeto. Os repositórios do github estão em parênteses ao lado dos títulos de cada um dos projetos.
+
+\subsection{Anonymizer}
+
+O código-fonte deste projeto está disponível em github.com/DivanteLtd/anonymizer.
+
+Anonymizer foi desenvolvida na linguagem de programação Ruby pela compania européia Divante e opera em bancos de dados MySQL. Segundo a documentação, sua funcionalidade mais importante é a formatação de dados. A ferramenta substitui os dados originais por dados gerados.
+
+A instalação da ferramenta é feita a partir de uma cópia do repositório de código. 
+
+O processo de anonimização é feito a partir de um arquivo de dump do banco de dados. Este arquivo pode estar na mesma máquina que executa o processo ou em uma máquina remota. O usuário deve criar um arquivo no formato JSON com os parâmetros do processo.
+
+A ferramenta permite substituir os valores nas tabelas por valores fixos, valores em branco ou gerados, de acordo com a categoria. São suportadas as categorias firstname, lastname, login, email, telephone, company, street, postcode, city, full{\_}address, vat{\_}id, ip, quote, website, iban, json, uniq{\_}email, uniq{\_}login, regon e pesel. Também é possível truncar todos os dados de uma tabela.
+
+Também é provida a capacidade de executar um comando SQL arbitrário antes ou depois do processo.
+
+- Qual banco é compatível?
+
+\subsection{Data::Anonymization}
+
+O código-fonte deste projeto está disponível em github.com/sunitparekh/data-anonymization/.
+
+TODO
+
+\subsection{ARX - Open Source Data Anonymization Software}
+
+O código-fonte deste projeto está disponível em github.com/arx-deidentifier/arx.
+
+TODO
+
+\subsection{Presidio}
+
+O código-fonte deste projeto está disponível em github.com/microsoft/presidio.
+
+TODO
