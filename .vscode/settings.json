@@ -1,0 +1,12 @@
+{
+    "files.exclude": {
+        "**/*.aux": true,
+        "**/*.dvi": true,
+        "**/*.fdb_latexmk": true,
+        "**/*.fls": true,
+        "**/*.synctex.gz*": true,
+        "**/*.synctex*": true
+    },
+    "git.ignoreLimitWarning": true,
+    "files.defaultLanguage": "tex"
+}
