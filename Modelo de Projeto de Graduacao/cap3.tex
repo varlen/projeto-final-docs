@@ -1,43 +1,54 @@
 \chapter{Metodologia}
 \label{cap3}
 
-\section{Descoberta e Análise de ferramentas de anonimização}
+
+A etapa inicial deste trabalho consistiu na prospecção das ferramentas de código aberto existentes com o intuito de entender
+as capacidades fornecidas e determinar os requisitos necessários a uma nova solução.
+
+
+\section{Descoberta de Ferramentas}
 
 \paragraph{}
-Para descoberta de ferramentas de anonimização neste trabalho, foram utilizados projetos de código-aberto disponíveis no GitHub. 
+Para descoberta de ferramentas de anonimização neste trabalho, foram utilizados projetos de código-aberto disponíveis em repositórios públicos no GitHub. 
 
-Especificamente, foram consideradas as métricas de stars e forks dos repositórios como medida de popularidade para seleção de 4 projetos relativos a anonimização de dados. Todos os projetos apresentavam novas modificações no código-fonte em Março de 2020, indicando que são mantidos pelas comunidade. Buscou-se inferir os casos de uso, funcionalidades, usabilidade e tecnologias utilizadas a partir da documentação dos projetos. Consideradou-se a primeira linha dos arquivos README.md dos repositórios como nome do projeto. Os repositórios do github estão em parênteses ao lado dos títulos de cada um dos projetos.
+Especificamente, foram consideradas as métricas de stars e forks dos repositórios como medida de popularidade para seleção de 4 projetos relativos a anonimização de dados. Todos os projetos apresentavam novas modificações no código-fonte em Março de 2020, indicando que são mantidos pelas comunidade. Buscou-se inferir os casos de uso, funcionalidades, usabilidade e tecnologias utilizadas a partir da documentação dos projetos. Considerou-se a primeira linha dos arquivos README dos repositórios como nome do projeto.
 
 \subsection{Anonymizer}
 
-O código-fonte deste projeto está disponível em github.com/DivanteLtd/anonymizer.
+github.com/DivanteLtd/anonymizer.
 
-Anonymizer foi desenvolvida na linguagem de programação Ruby pela compania européia Divante e opera em bancos de dados MySQL. Segundo a documentação, sua funcionalidade mais importante é a formatação de dados. A ferramenta substitui os dados originais por dados gerados.
+Anonymizer foi desenvolvida na linguagem de programação Ruby pela compania européia Divante e opera exclusivamente em bancos de dados MySQL. Segundo a documentação, sua funcionalidade mais importante é a formatação de dados. A ferramenta substitui os dados originais por dados gerados.
 
-A instalação da ferramenta é feita a partir de uma cópia do repositório de código. 
+Sua instalação é feita a partir de uma cópia do repositório de código-fonte para a máquina na qual se deseja executar.
 
 O processo de anonimização é feito a partir de um arquivo de dump do banco de dados. Este arquivo pode estar na mesma máquina que executa o processo ou em uma máquina remota. O usuário deve criar um arquivo no formato JSON com os parâmetros do processo.
 
-A ferramenta permite substituir os valores nas tabelas por valores fixos, valores em branco ou gerados, de acordo com a categoria. São suportadas as categorias firstname, lastname, login, email, telephone, company, street, postcode, city, full{\_}address, vat{\_}id, ip, quote, website, iban, json, uniq{\_}email, uniq{\_}login, regon e pesel. Também é possível truncar todos os dados de uma tabela.
+A ferramenta permite substituir os valores nas tabelas por valores fixos, valores em branco ou gerados, de acordo com a categoria. São suportadas as categorias firstname, lastname, login, email, telephone, company, street, postcode, city, full{\_}address, vat{\_}id, ip, quote, website, iban, json, uniq{\_}email, uniq{\_}login, regon (equivalente polonês ao CNPJ) e pesel (equivalente polonês ao CPF). 
 
-Também é provida a capacidade de executar um comando SQL arbitrário antes ou depois do processo.
-
-- Qual banco é compatível?
+Também é possível truncar todos os dados de uma tabela e executar comandos SQL arbitrários antes ou depois do processo.
 
 \subsection{Data::Anonymization}
 
-O código-fonte deste projeto está disponível em github.com/sunitparekh/data-anonymization/.
+github.com/sunitparekh/data-anonymization/.
 
 TODO
 
 \subsection{ARX - Open Source Data Anonymization Software}
 
-O código-fonte deste projeto está disponível em github.com/arx-deidentifier/arx.
+github.com/arx-deidentifier/arx.
 
-TODO
+Os criadores do ARX explicam que o seu objetivo é produzir um software livre com alto grau de automação que fornece uma gama variada de tecnicas de anonimização. Várias destas técnicas estão descritas em publicações especificas e incluem algoritmos criados a partir de modelos estatísticos, teoria dos jogos, privacidade diferencial, dentre outras.
+
+O ARX utiliza um algoritmo de busca global para transformação de dados com "full-domain generalization" e supressão de registros. Full-domain generalization implica que todos os  valores de um atributo são transformados ao mesmo nível de generalização em todos os registros.
+
+Por exemplo, um atributo (ou coluna) categórico de Gênero em um registro típicamente possui os valores Masculino, Feminino e Outros. Esse atributo é generalizado a um nível hierarquico acima através da supressão. Ou seja, o valor armazenado no registro é transformado em "*". No caso de um atributo numérico de idade, a generalização transforma um valor específico em uma faixa etária. A extensão da faixa depende do nível de generalização aplicado. O resultado de todas as operações de transformação deve considerar a relação de custo-benefício entre anonimização e utilidade.
+
+Desta forma, o programa busca a solução ótima para a anonimização do conjunto de dados utilizando configurações definidas pelo usuário como o número máximo de registros que podem ser suprimidos, particionamentos do conjunto de dados a serem transformados utilizando técnicas diferentes, amostragem do conjunto de dados de entrada avaliadas contra diversos modelos de riscos de privacidade.
+
+O ARX fornece uma solução robusta para anonimização, sendo a ferramenta mais flexível dentre as ferramentas avaliadas, ao custo de maior complexidade de operação. Entretanto, não necessariamente conserva os tipos de dados entre o conjunto original e o conjunto de saída (Uma idade é um tipo numérico, enquanto uma faixa etária é uma estrutura de dois valores numéricos).
 
 \subsection{Presidio}
 
-O código-fonte deste projeto está disponível em github.com/microsoft/presidio.
+github.com/microsoft/presidio.
 
 TODO
