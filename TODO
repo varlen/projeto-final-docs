@@ -1,4 +1,4 @@
-[ ] Move github repository links to bibliografy and add reference to subsection titles
+[X] Move github repository links to bibliografy and add reference to subsection titles
 [ ] Write about ARX data input (how its done?)
 [ ] Data::Anonymization writeup
 [ ] Presidio writeup
@@ -7,3 +7,6 @@
 [ ] Writeup on GDPR
 [ ] Writeup on Privacy conceptions with understanding privacy topics
 
+[ ] Check for scientific articles on Presidio
+[ ] Check for scientific articles on Data::Anonymization
+[ ] Change bibliography of ARX to use one of the papers
