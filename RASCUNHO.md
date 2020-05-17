@@ -145,7 +145,7 @@ Continua...
 
 -----
 
-## Nomeclatura 
+## Gloassário 
 
 Registro - Unidade de armazenamento de dados estruturados. No caso de um banco de dados relacional, um registro é especificamente uma linha de uma tabela.
 
@@ -157,7 +157,9 @@ Dimensionalidade - Número de atributos
 
 Volume - Número de registros
 
+Linguagem Específica de Domínio - (...)
 
+Mapeador Objeto Relacional - (...)
 ## Arquitetura
 
 Inspetor de Estrutura - Componente responsável por extrair a estrutura do banco de dados relacional a ser anonimizado, tabelas, colunas, tipos de armazenamento, tipos semânticos (classificação de entidades), estatisticas de agregação e relações.

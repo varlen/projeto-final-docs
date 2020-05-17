@@ -24,9 +24,22 @@ Especificamente, foram consideradas as métricas de stars e forks dos repositór
 
 \subsection{Data::Anonymization}
 
-Ferramenta criada pela ToughtWorks Inc\cite{data-anon-repository}
 
-TODO
+\paragraph{} Data::Anonymization\cite{data-anon-repository} é uma solução criada pela ToughtWorks Inc usando a linguagem de programação Ruby. Sua instalação é feita através do gerenciador de pacotes do Ruby.
+
+\paragraph{} É possível utilizar a ferramenta em bancos de dados para os quais existam uma implementação de driver compatível com o Active Record\cite{active-record}, que é a implementação de mapeamento objeto relacional do framework Ruby on Rails. O repositório fornece exemplos de uso para SQLite, Postgres e MongoDB.
+
+\paragraph{} Seu funcionamento é similar ao de uma biblioteca. O usuário deve utilizar Linguagem Específica de Domínio fornecida pela ferramenta definindo as tabelas, suas relações e qual estratégia de anonimização deve ser aplicada a cada coluna.
+
+\paragraph{} O usuário pode definir se deseja que todos os campos sejam anonimizados e explicitar os campos que não devem ser anonimizados ou se deseja modificar apenas os campos listados. Como exemplos de estratégias de anonimização é possível listar: geração de valores aleatórios, tanto para campos numéricos quanto textuais; sorteio de um valor a partir de uma lista; modelos formatados; resultados de uma consulta 
+no banco de dados; deslocamento de valores de instantes de tempo e intervalos de tempo; geração de números de telefone, código postal e endereço. 
+
+\paragraph{} Caso seja usado o modo em que todos os campos são anonimizados, a ferramenta aplicará estratégias de anonimização padrão dependendo do tipo de dado da coluna. Alguns registros podem ser ignorados a partir de verificações condicionais.
+
+\paragraph{} Também é possível extender a funcionalidade embutida e implementar um estratégia customizada utilizando a linguagem Ruby. Essa estratégia é então disponibilizada para uso na Linguagem Específica de Domínio.
+
+\paragraph{} Um detalhe de implementação importante é que a ferramenta altera os valores diretamente no banco de dados em que está conectada.
+
 
 \subsection{ARX - Open Source Data Anonymization Software}
 
