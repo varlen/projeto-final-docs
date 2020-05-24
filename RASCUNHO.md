@@ -1,4 +1,23 @@
+Gasser, U. Recoding Privacy Law: Reflections on the future relationship among law, ... Havard Law Review Forum 2016
+
+"A história da privaciade é profundamente entrelaçada com a história da tecnologia"
+
+--
+
+
+
+NARAYANAN, A.; SHMATIKOV V. Robust de-anonymization of large sparse datasets
+
+
+Registros textuais:
+    tecnicas possíveis:
+        supressão, tagging e substituição
+
+
+
+
 # Understanding Privacy
+
 
 ## Cap 2
 

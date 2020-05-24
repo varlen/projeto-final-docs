@@ -21,7 +21,7 @@ de cada indivíduo.
 
 \subsection{O entendimento multifacetado de privacidade}
 
-\paragraph{}
+\paragraph{} Warren e Brandeis - "Direito à reserva de informações pessoais e da própria vida pessoal"
 
 \subsection{A General Data Protection Regulation europeia}
 
@@ -35,11 +35,9 @@ de cada indivíduo.
 
 \subsection{Tipos, Atributos e Registros}
 
-\paragraph{} Um registro é a unidade de armazenamento de dados. Por exemplo, num consultório médico, existem
+\paragraph{} De maneira geral, um registro é a unidade de armazenamento de dados. Por exemplo, num consultório médico, existem
 diversas fichas cadastrais dos pacientes, contendo nome, números de documentos, informações de contato 
-e histórico de consultas. Essas fichas, quando digitalizadas, podem ser armazenadas sob a forma de 
-linhas em uma tabela. Cada linha desta tal tabela hipotética é um registro e cada uma das colunas 
-nesta linha é um atributo do registro.
+e histórico de consultas. Essas fichas, quando implementadas em um meio digital, seja através de um software que acessa um banco de dados ou mesmo de uma planilha, podem ser armazenadas sob a forma de linhas em uma tabela. Cada linha desta tal tabela hipotética é um registro e cada uma das colunas nesta linha é um atributo do registro.
 
 \begin{table}[ht]
     \caption{Exemplos de registros para ficha cadastral de pacientes em uma clínica}
@@ -56,14 +54,13 @@ nesta linha é um atributo do registro.
 \end{table}
 
 \paragraph{} Os atributos, ou campos, dos registros armazenam a menor unidade de informação dentro de um conjunto de dados.
-Alguns destes campos permitem a associação entre diferentes registros ao possuírem valores únicos. 
+Alguns destes campos permitem a associação entre diferentes registros ao possuírem valores únicos.
 Suponha que uma loja armazena o número de telefone 
 de seus clientes, assim como seu histórico de compras. 
 
 \paragraph{} Se o número de telefone é o mesmo que os clientes utilizaram para a ficha cadastral do consultório 
 médico mostrada anteriormente, considerando também um agente que possui acesso a ambos os dados, da loja e do 
-consultório médico, é possível realizar a junção dos dados dos dois registros. Assim, cria-se efetivamente uma associação 
-entre as informações clínicas e de consumo dos clientes.
+consultório médico, é possível realizar a junção dos dados dos dois registros. Assim, correlacionando as informações clínicas e de consumo dos clientes.
 
 \paragraph{} Além disso, cada atributo pertence a um tipo de dado. No exemplo da loja, o campo de idade é armazenado 
 como um tipo número inteiro não negativo, assim como o nome é armazenado como uma cadeia de caracteres.
@@ -71,12 +68,33 @@ A nível de registro, é possível definir um tipo a partir do conjuntos de valo
 Tipos impõem restrições nas operações que podem ser realizadas nos atributos, podem dar sentido semântico \cite{donahue1979semantics},
 e definem o formato de armazenamento da informação, garantindo sua consistência.
 
-
-
+\paragraph{} A quantidade de atributos em um registro determina a sua dimensionalidade. Conjuntos de dados. Diz-se que o conjunto de dados é esparso quando dois registros aleatórios estão sempre distantes no espaço multidimensional formado por seus atributos.
 
 \subsection{ETL}
 
-\section{Anonimização}
+\section{Anonimização e Reidentificação}
+
+\subsection{Anonimização}
+
+\paragraph{} Por muitas vezes atributos em registros contém dados pessoais como CPF, nome, endereço e telefone. É fácil perceber que estes permitem atribuir um registro a um individuo especifico diretamente.
+
+\paragraph{} Essa atribuição, entretanto, é por muitas vezes indesejada. Tomando como exemplo a divulgação do resultado de testes para medicamentos, é importante para a sociedade saber caracteristicas que possam determinar o comportamento da 
+substância pesquisada em certos grupos de indivíduos. Por outro lado, é fundamental para os próprios indivíduos que seus dados pessoais não estejam presentes nos resultados públicos destes testes. 
+
+\paragraph{} Para garantir que estas duas condições sejam satisfeitas, é possível implementar um processo de anonimização sobre o conjunto de dados trabalhados. Este consiste em um processamento irreversível\cite{dias2016multilingual} sobre o conjunto de dados através de substuições, agregações e supressões de registros e seus atributos com o intuito final de gerar um novo conjunto de dados cuja possibilidade de divulgação não implica em um risco para os individuos e instituições envolvidos. 
+
+\subsection{Reidentificação}
+
+\paragraph{} É trivial perceber que os atributos que levam a associação direta de um individuo com seus registros devem ser suprimidos do conjunto de dados. Esta intuição entretanto não leva em consideração a possibilidade de reidentificação de pessoas no conjunto anonimizado através do processamento de múltiplos registros.
+
+\paragraph{} Em 2008 Arvind Narayanan e Vitaly Shmatikovdemonstraram uma metologia robusta\cite{netflixDeanon}  que permitiu quebrar o anonimato de um conjunto de dados da Netflix. Os pesquisadores utilizaram as preferencias individuais, recomendações e registro de transações do conjunto anonimizado e dados públicos disponíveis no IMDB, revelando a identidade dos usuários, seu alinhamento político aparente, dentre outras informações pessoais.
+
+\paragraph{}
+
+\subsection{Modelo de Privacidade}
+
+
+
 
 % \section{Figuras}
 

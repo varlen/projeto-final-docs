@@ -40,6 +40,11 @@ doi = {10.1007/978-1-4842-2080-1}
 
 - https://news.ycombinator.com/item?id=7796268
 
+
+## Abstraction
+Abstraction is a mechanism which permits the expression of relevant details and the suppression of irrelevant details.
+
+
 ## Entity Recognition
 - https://www.cs.cmu.edu/~lbing/pub/ijcla13.pdf - Web entity identification
 - http://www.cse.unsw.edu.au/~hpaik/pdf/pcmlong.pdf - Improved Named Entity Recognition - Patterns in Columns
