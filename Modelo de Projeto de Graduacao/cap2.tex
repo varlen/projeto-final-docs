@@ -33,11 +33,50 @@ de cada indivíduo.
 
 \section{Bancos de Dados}
 
-\subsection{Registros}
+\subsection{Tipos, Atributos e Registros}
+
+\paragraph{} Um registro é a unidade de armazenamento de dados. Por exemplo, num consultório médico, existem
+diversas fichas cadastrais dos pacientes, contendo nome, números de documentos, informações de contato 
+e histórico de consultas. Essas fichas, quando digitalizadas, podem ser armazenadas sob a forma de 
+linhas em uma tabela. Cada linha desta tal tabela hipotética é um registro e cada uma das colunas 
+nesta linha é um atributo do registro.
+
+\begin{table}[ht]
+    \caption{Exemplos de registros para ficha cadastral de pacientes em uma clínica}
+    \label{table:registros}
+    \begin{center}
+        \begin{tabular}{| l | l | l | l | l |}
+        \hline
+        Nome & Idade & Logradouro & Telefone & Data da Última Consulta \\ \hline
+        João Silva & 32 & Rua do Trigo, 1 & 9999-9999 & 02/01/2020 \\ \hline
+        Maria Souza & 30 & Rua das Neves, 2 & 9999-5555 & 02/01/2020 \\ \hline
+        \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
+\paragraph{} Os atributos, ou campos, dos registros armazenam a menor unidade de informação dentro de um conjunto de dados.
+Alguns destes campos permitem a associação entre diferentes registros ao possuírem valores únicos. 
+Suponha que uma loja armazena o número de telefone 
+de seus clientes, assim como seu histórico de compras. 
+
+\paragraph{} Se o número de telefone é o mesmo que os clientes utilizaram para a ficha cadastral do consultório 
+médico mostrada anteriormente, considerando também um agente que possui acesso a ambos os dados, da loja e do 
+consultório médico, é possível realizar a junção dos dados dos dois registros. Assim, cria-se efetivamente uma associação 
+entre as informações clínicas e de consumo dos clientes.
+
+\paragraph{} Além disso, cada atributo pertence a um tipo de dado. No exemplo da loja, o campo de idade é armazenado 
+como um tipo número inteiro não negativo, assim como o nome é armazenado como uma cadeia de caracteres.
+A nível de registro, é possível definir um tipo a partir do conjuntos de valores que este pode assumir \cite{cardelli1985types}. 
+Tipos impõem restrições nas operações que podem ser realizadas nos atributos, podem dar sentido semântico \cite{donahue1979semantics},
+e definem o formato de armazenamento da informação, garantindo sua consistência.
+
+
+
 
 \subsection{ETL}
 
-\subsection{Anonimização}
+\section{Anonimização}
 
 % \section{Figuras}
 
