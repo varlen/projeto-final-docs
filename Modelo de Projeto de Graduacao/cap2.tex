@@ -31,7 +31,7 @@ de cada indivíduo.
 
 \paragraph{}
 
-\section{Bancos de Dados}
+\section{Bases de Dados}
 
 \subsection{Tipos, Atributos e Registros}
 
@@ -87,13 +87,17 @@ substância pesquisada em certos grupos de indivíduos. Por outro lado, é funda
 
 \paragraph{} É trivial perceber que os atributos que levam a associação direta de um individuo com seus registros devem ser suprimidos do conjunto de dados. Esta intuição entretanto não leva em consideração a possibilidade de reidentificação de pessoas no conjunto anonimizado através do processamento de múltiplos registros.
 
-\paragraph{} Em 2008 Arvind Narayanan e Vitaly Shmatikovdemonstraram uma metologia robusta\cite{netflixDeanon}  que permitiu quebrar o anonimato de um conjunto de dados da Netflix. Os pesquisadores utilizaram as preferencias individuais, recomendações e registro de transações do conjunto anonimizado e dados públicos disponíveis no IMDB, revelando a identidade dos usuários, seu alinhamento político aparente, dentre outras informações pessoais.
+\paragraph{} Em 2008 Arvind Narayanan e Vitaly Shmatikov demonstraram uma metologia robusta\cite{netflixDeanon}  que permitiu quebrar o anonimato de um conjunto de dados da Netflix. Os pesquisadores utilizaram as preferencias individuais, recomendações e registro de transações do conjunto anonimizado e dados públicos disponíveis no IMDB, revelando a identidade dos usuários, seu alinhamento político aparente, dentre outras informações pessoais.
 
-\paragraph{}
+\paragraph{} Outro exemplo de ataque de reidentificação foi a desanonimização do genoma dos pacientes a partir dos padrões de visitação dos pacientes e dados disponíveis no ambiente informacional da saúde demonstrado por Malin e Sweeney\cite{malin2004}.
 
-\subsection{Modelo de Privacidade}
+\section{Modelos de Privacidade}
 
+\paragraph{} A avaliação de riscos sobre dados sensíveis pode ser feita a partir da definição dos seguinte perfis: A instituição, responsável pela governança dos dados; O adversário, que deseja abusar do conjunto de dados divulgado para obter informações implicitas, possivelmente violando a privacidade dos individuos representados nos registros; O terceiro, interessados em informações analíticas e estruturais no conjunto de dados divulgado. A anonimização transforma um conjunto de dados inicial em um conjunto anonimizado.
 
+\paragraph{} Paul Ohm\cite{ohm2009} diz que "Dados podem ser úteis ou perfeitamente anônimos mas nunca ambos." Neste sentido, uma aplicação de anonimização bem sucedida deve impedir o adversário de recuperar informações a partir da associação deste com informações auxiliares de sua posse e ao mesmo tempo deve manter a utilidade dos dados para utilização de terceiros. 
+
+\paragraph{} Neste escopo, algumas técnicas podem ser utilizadas para implementar a anonimização de registros, de acordo com as metas de compromisso entre utilidade e segurança das informações.
 
 
 % \section{Figuras}
