@@ -9,16 +9,13 @@ Visando uma maior familiarização do leitor ao domínio deste trabalho, também
 
 \subsection{Privacidade e o Indivíduo}
 
-De acordo com Goffman\cite{goffman1978presentation}, quando uma pessoa se apresenta diante de outras, esta terá motivações diversas para controlar a impressão que causa, moldando sua identidade social de acordo com a audiência. 
+De acordo com Goffman\cite{goffman1978presentation}, quando uma pessoa se apresenta diante de outras, esta terá motivações diversas para controlar a impressão que causa, moldando sua identidade social, através da disponibilização controlada de informações sobre si, de acordo com a audiência. 
 
-A construção desta identidade se dá através da disponibilização de informações sob medida de acordo com o público a quem é apresentada.
+Assim, a revelação indesejada de informações pode levar a identidade construída ao descrédito, sendo potencialmente prejudicial ao indivíduo.
 
-Assim, a revelação indesejada de informações pode levar a identidade estabelecida ao descrédito, sendo potencialmente prejudicial ao indivíduo.
+Um exemplo concreto deste conceito pode ser observado na definição de profissionalismo apresentada por Abril et al \cite{sanchez2012blurred} que implica que o profissionalismo requer a segregação entre a persona profissional e privada do indivíduo, dado que existem comportamentos ditos socialmente aceitaveis que não são permitidos no ambiente de trabalho.
 
-Um exemplo concreto deste conceito é a definição de profissionalismo apresentada por Abril et al \cite{sanchez2012blurred} que implica que o profissionalismo requer
-a segregação entre a persona profissional e privada do indivíduo, dado que existem comportamentos ditos socialmente aceitaveis que não são permitidos no ambiente de trabalho.
-
-A privacidade então, definida por Warren e Brandeis como ``direito à reserva de informações pessoais e da própria vida pessoal''\cite{warren1890right}, pode ser vista como uma ferramenta fundamental para garantia da manutenção da dignidade do indivíduo, tendo assim caráter de direito fundamental.
+A privacidade, definida por Warren e Brandeis como ``direito à reserva de informações pessoais e da própria vida pessoal''\cite{warren1890right}, pode ser vista como uma ferramenta fundamental para garantia da manutenção da dignidade do indivíduo, tendo assim caráter de direito fundamental.
 
 \subsection{A Sensibilização sobre privacidade}
 
@@ -75,7 +72,15 @@ e definem o formato de armazenamento da informação, garantindo sua consistênc
 
 \paragraph{} A quantidade de atributos em um registro determina a sua dimensionalidade. Diz-se que o conjunto de dados é esparso quando dois registros aleatórios estão sempre distantes no espaço multidimensional formado por seus atributos.
 
-\subsection{ETL} TODO
+\subsection{Consulta}
+
+\paragraph{} Uma consulta é uma função aplicada ao banco de dados. Essa função tem por objetivo obter os valores de atributos para registros de acordo com os critérios nela definidos.
+
+\paragraph{} Softwares de bancos de dados que implementam o padrão ISO 9075 são comuns para bancos de dados relacionais e permitem utilizar a linguagem SQL para realização de consultas.
+
+\subsection{ETL} 
+
+\paragraph{} TODO
 
 \section{Anonimização e Reidentificação}
 
@@ -108,14 +113,23 @@ TODO: (EXPANDIR)
 
 \subsection{Aleatorização e adição de ruído}
 
-A aleatorização é uma técnica proposta por Warner\cite{warner1965randomized} com o objetivo de resolver o seguinte problema: estimar qual parcela de pessoas em uma população possui um atributo específico sem que seja possível obter a informação para uma amostra individual. 
+\paragraph{} A aleatorização é uma técnica proposta por Warner\cite{warner1965randomized} com o objetivo de resolver o seguinte problema: estimar qual parcela de pessoas em uma população possui um atributo específico sem que seja possível obter a informação para uma amostra individual. 
 
-A aplicação computacional desta técnica foi demonstrada por Agrawal e Srikant\cite{agrawal2000privacy} no contexto da mineração de dados, propondo um procedimento para construir classificadores de árvore de decisão acurados a partir de um conjunto de dados cujos valores originais foram alterados. Essas alterações podem ser através da substituição de uma informação pela sua alocação dentro de um conjunto com risco menor ou através da adição de uma variável aleatória ao valor real.
+\paragraph{} A aplicação computacional desta técnica foi demonstrada por Agrawal e Srikant\cite{agrawal2000privacy} no contexto da mineração de dados, propondo um procedimento para construir classificadores de árvore de decisão acurados a partir de um conjunto de dados cujos valores originais foram alterados. Essas alterações podem ser através da substituição de uma informação pela sua alocação dentro de um conjunto com risco menor ou através da adição de uma variável aleatória ao valor real.
 
-Aproveita-se do fato de que cada atributo em um registro implica em um potencial risco de privacidade diferente. Um usuário pode não se sentir confortável para expor o valor exato de seu salário, mas não ter problemas em revelar a faixa salarial, por exemplo.
+\paragraph{} Aproveita-se do fato de que cada atributo em um registro implica em um potencial risco de privacidade diferente. Um usuário pode não se sentir confortável para expor o valor exato de seu salário, mas não ter problemas em revelar a faixa salarial, por exemplo.
+
+\paragraph{} A aleatorização para um atributo binário pode ser exemplificada a partir do algoritmo mostrado por Dwork et al.\cite{dwork2014algorithmic}: Arremessa-se uma moeda. Caso coroa, então responde-se a informação original. Do contrário, realiza-se um novo arremesso e responde-se ``sim'' para coroa ou ``não'' para cara.
 
 \subsection{Privacidade Diferencial}
 
+\paragraph{} De acordo com Dwork\cite{dwork2008differential}, a privacidade diferencial é uma definição e não um algoritmo específico. 
+
+\paragraph{} A autora argumenta que conjuntos de dados diferencialmente privados garantem que seja possível inferir conclusões a partir de um mesmo que um indivíduo opte por não permitir que seus dados sejam inclusos e permitem a um curador garantir que um indivíduo não seja afetado por permitir a utilização de seus dados.
+
+\paragraph{} Isso permite que um indivíduo participe de uma pesquisa sem que suas respostas individuais sejam reveladas.
+
+TODO (EXPANDIR; possivelmente incluir a definição matemática)
 
 
 \subsection{Agregação}
