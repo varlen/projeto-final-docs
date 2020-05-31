@@ -1,4 +1,4 @@
-\chapter{Fundamentação Teórica}
+\chapter{Fundamentação}
 \label{cap2}
 
 \paragraph{} O presente capítulo propõe-se a introduzir o leitor ao entendimento acadêmico existente sobre o conceito de privacidade, especificamente no que contempla a área de Tecnologia da Informação com foco nos pontos de interesse ao presente trabalho,
@@ -7,37 +7,42 @@ Visando uma maior familiarização do leitor ao domínio deste trabalho, também
 
 \section{Privacidade}
 
+\subsection{Privacidade e o Indivíduo}
+
+De acordo com Goffman\cite{goffman1978presentation}, quando uma pessoa se apresenta diante de outras, esta terá motivações diversas para controlar a impressão que causa, moldando sua identidade social de acordo com a audiência. 
+
+A construção desta identidade se dá através da disponibilização de informações sob medida de acordo com o público a quem é apresentada.
+
+Assim, a revelação indesejada de informações pode levar a identidade estabelecida ao descrédito, sendo potencialmente prejudicial ao indivíduo.
+
+Um exemplo concreto deste conceito é a definição de profissionalismo apresentada por Abril et al \cite{sanchez2012blurred} que implica que o profissionalismo requer
+a segregação entre a persona profissional e privada do indivíduo, dado que existem comportamentos ditos socialmente aceitaveis que não são permitidos no ambiente de trabalho.
+
+A privacidade então, definida por Warren e Brandeis como ``direito à reserva de informações pessoais e da própria vida pessoal''\cite{warren1890right}, pode ser vista como uma ferramenta fundamental para garantia da manutenção da dignidade do indivíduo, tendo assim caráter de direito fundamental.
+
 \subsection{A Sensibilização sobre privacidade}
 
 \paragraph{} De acordo com \cite{lgpd-evandro}, a Web 2.0 e o consequente crescimento da cultura participativa
-aonde os próprios usuários consumidores são também geradores de conteúdo implicou numa
-percepção de risco relacionado a privacidade cada vez maior.
+aonde os próprios usuários consumidores são também geradores de conteúdo implicou numa percepção de risco relacionado a privacidade cada vez maior.
 
-\paragraph{} A ampla disponibilidade de dados privados na Internet trouxe o tema às pautas dos debates políticos 
-mundiais, culminando na implementação de regulamentações para definir qual é o tratamento adequado
-a estas informações, de modo a impedir o abuso no seu uso e garantir o direito a privacidade
-de cada indivíduo.
-
-
-\subsection{O entendimento multifacetado de privacidade}
-
-\paragraph{} Warren e Brandeis - "Direito à reserva de informações pessoais e da própria vida pessoal"
+\paragraph{} A ampla disponibilidade de dados na Internet trouxe o tema às pautas dos debates políticos 
+mundiais, culminando na implementação de regulamentações para padronizar o tratamento adequado
+a estas informações, de modo a impedir o abuso no seu uso e garantir o direito a privacidade de cada indivíduo.
 
 \subsection{A General Data Protection Regulation europeia}
 
-\paragraph{}
+\paragraph{} TODO
 
 \subsection{A Lei Geral de Protecao de Dados brasileira}
 
-\paragraph{}
+\paragraph{} TODO
 
 \section{Bases de Dados}
 
 \subsection{Tipos, Atributos e Registros}
 
 \paragraph{} De maneira geral, um registro é a unidade de armazenamento de dados. Por exemplo, num consultório médico, existem
-diversas fichas cadastrais dos pacientes, contendo nome, números de documentos, informações de contato 
-e histórico de consultas. Essas fichas, quando implementadas em um meio digital, seja através de um software que acessa um banco de dados ou mesmo de uma planilha, podem ser armazenadas sob a forma de linhas em uma tabela. Cada linha desta tal tabela hipotética é um registro e cada uma das colunas nesta linha é um atributo do registro.
+diversas fichas cadastrais dos pacientes, contendo nome, números de documentos, informações de contato e histórico de consultas. Essas fichas, quando implementadas em um meio digital, seja através de um software que acessa um banco de dados ou mesmo de uma planilha, podem ser armazenadas sob a forma de linhas em uma tabela. Cada linha desta tal tabela hipotética é um registro e cada uma das colunas nesta linha é um atributo do registro.
 
 \begin{table}[ht]
     \caption{Exemplos de registros para ficha cadastral de pacientes em uma clínica}
@@ -68,9 +73,9 @@ A nível de registro, é possível definir um tipo a partir do conjuntos de valo
 Tipos impõem restrições nas operações que podem ser realizadas nos atributos, podem dar sentido semântico \cite{donahue1979semantics},
 e definem o formato de armazenamento da informação, garantindo sua consistência.
 
-\paragraph{} A quantidade de atributos em um registro determina a sua dimensionalidade. Conjuntos de dados. Diz-se que o conjunto de dados é esparso quando dois registros aleatórios estão sempre distantes no espaço multidimensional formado por seus atributos.
+\paragraph{} A quantidade de atributos em um registro determina a sua dimensionalidade. Diz-se que o conjunto de dados é esparso quando dois registros aleatórios estão sempre distantes no espaço multidimensional formado por seus atributos.
 
-\subsection{ETL}
+\subsection{ETL} TODO
 
 \section{Anonimização e Reidentificação}
 
@@ -91,13 +96,49 @@ substância pesquisada em certos grupos de indivíduos. Por outro lado, é funda
 
 \paragraph{} Outro exemplo deste tipo de ataque foi demonstrado por Malin e Sweeney\cite{malin2004} em 2004 ao recuperar informações genéticas de pacientes a partir dos padrões de visitação e dados disponíveis no ambiente informacional da saúde.
 
-\section{Modelos de Privacidade}
+TODO: (EXPANDIR)
+
+\section{Técnicas de Anonimização}
 
 \paragraph{} A avaliação de riscos sobre dados sensíveis pode ser feita a partir da definição dos seguinte perfis: A instituição, responsável pela governança dos dados; O adversário, que deseja abusar do conjunto de dados divulgado para obter informações implicitas, possivelmente violando a privacidade dos individuos representados nos registros; O terceiro, interessados em informações analíticas e estruturais no conjunto de dados divulgado. A anonimização transforma um conjunto de dados inicial em um conjunto anonimizado.
 
 \paragraph{} Paul Ohm\cite{ohm2009} diz que "Dados podem ser úteis ou perfeitamente anônimos mas nunca ambos." Neste sentido, uma aplicação de anonimização bem sucedida deve impedir o adversário de recuperar informações a partir da associação deste com informações auxiliares de sua posse e ao mesmo tempo deve manter a utilidade dos dados para utilização de terceiros. 
 
 \paragraph{} Neste escopo, algumas técnicas podem ser utilizadas para implementar a anonimização de registros, de acordo com as metas de compromisso entre utilidade e segurança das informações.
+
+\subsection{Aleatorização e adição de ruído}
+
+A aleatorização é uma técnica proposta por Warner\cite{warner1965randomized} com o objetivo de resolver o seguinte problema: estimar qual parcela de pessoas em uma população possui um atributo específico sem que seja possível obter a informação para uma amostra individual. 
+
+A aplicação computacional desta técnica foi demonstrada por Agrawal e Srikant\cite{agrawal2000privacy} no contexto da mineração de dados, propondo um procedimento para construir classificadores de árvore de decisão acurados a partir de um conjunto de dados cujos valores originais foram alterados. Essas alterações podem ser através da substituição de uma informação pela sua alocação dentro de um conjunto com risco menor ou através da adição de uma variável aleatória ao valor real.
+
+Aproveita-se do fato de que cada atributo em um registro implica em um potencial risco de privacidade diferente. Um usuário pode não se sentir confortável para expor o valor exato de seu salário, mas não ter problemas em revelar a faixa salarial, por exemplo.
+
+\subsection{Privacidade Diferencial}
+
+
+
+\subsection{Agregação}
+TODO: (Possivelmente juntar as tecnicas a seguir em um tópico único)
+
+\subsection{k-anonimização}
+
+\subsection{l-diversidade}
+
+\subsection{t-proximidade}
+
+\subsection{Avaliação}
+Aspectos possíveis de avaliação:
+    - eficiencia
+    - efetividade
+
+\subsection{Pseudonimização}
+TODO:(VERIFICAR SE SERÁ PERTINENTE...)
+
+\subsection{Comparativo das técnicas de anonimização}
+TODO
+
+
 
 
 % \section{Figuras}
