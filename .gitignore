@@ -1,4 +1,6 @@
 Artigos/*/*.pdf
+Artigos/**/*.png
+
 
 ## LaTex Gitignore
 
