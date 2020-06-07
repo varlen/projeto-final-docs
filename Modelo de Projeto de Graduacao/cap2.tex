@@ -78,9 +78,31 @@ e definem o formato de armazenamento da informação, garantindo sua consistênc
 
 \paragraph{} Softwares de bancos de dados que implementam o padrão ISO 9075 são comuns para bancos de dados relacionais e permitem utilizar a linguagem SQL para realização de consultas.
 
-\subsection{ETL} 
+\paragraph{} Exemplos desses softwares são Postgres, MySQL, SQLite e Microsoft SQL Server.
 
-\paragraph{} TODO
+\subsection{OLTP e OLAP}
+
+\paragraph{} TODO. Ver o livro data intensive
+
+\subsection{Data Warehouses}
+
+\paragraph{} De acordo com Ali El-Sappagh et al. \cite{el2011proposed}, um Data Warehouse é um conjunto de tecnologias que permitem a uma instituição tomar decisões melhores e mais rápidas, diferindo de bancos de dados tradicionais no sentido de serem variantes no tempo, orientados por assunto, não normalizados e otimizados para OLAP.
+
+\paragraph{} Sendo assim, o objetivo da data warehouse é fornecer o aparato tecnológico para a realização de análises sobre grandes volumes de dados agregados de diferentes fontes, sendo estas provenientes dos diferentes domínios de atuação da instituição.
+
+\subsection{Ferramentas e Processos de ETL} 
+
+\paragraph{} Ferramentas de ETL (Extract-Transform-Loading) são soluções em software que permitem a integração de diferentes fontes de dados a uma data warehouse.
+De maneira geral, um processo de ETL realiza um mapeamento entre dois bancos de dados, possibilitando a aplicação de operações sobre o conjunto mapeado com o intuito de adequá-lo ao esquema do destino.
+
+\paragraph{} ETLs podem aceitar como entradas dados de diversas origens, como bancos de dados de provedores distintos, arquivos de texto ou planilhas. O passo inicial da ETL é a extração, sendo responsável pela captura dos dados. Este passo implementa as integrações para cumprir com os requisitos de operação específicos de cada origem, como por exemplo o protocolo de comunicação e o formato de armazenamento.
+
+\paragraph{} No momento da criação da Data Warehouse, o processo de extração é realizado em cima de um conjunto massivo de dados, realizando a extração inicial. Este processo é realizado uma única vez. \cite{kimball2008data} Após a extração inicial, os dados das fontes são obtidos a partir de Changed Data Capture. Isso implica que nas próximas extrações realizadas, apenas os dados novos ou alterados serão carregados. O software deve determinar quais dados serão carregados. Isso pode ser feito a partir de técnicas como observar o log do banco de dados, auditar colunas específicas, observar a data de modificação de arquivos, dentre outras.
+
+\paragraph{} O proximo passo do processo de ETL é a transformação. Este passo tem o objetivo de conformar o conjunto de dados de entrada as suas expectativas de uso, provendo um conjunto de dados consistente e sem ambiguidades a partir da limpeza e agregação da entrada. As regras utilizadas para transformação são armazenadas sob a forma de metadados.
+
+\paragraph{} A conclusão do processo de ETL se dá com o passo de carga. Essa etapa do processo é responsável por escrever os dados resultantes da transformação nos repositórios de dados que serão utilizados pelos usuários finais em seus respectivos mecanismos de armazenamento.
+
 
 \section{Anonimização e Reidentificação}
 
