@@ -83,28 +83,28 @@ e definem o formato de armazenamento da informação, garantindo sua consistênc
 \subsection{OLTP e OLAP}
 
 \paragraph{} Uma transação em um banco de dados é um conjunto de leituras e escritas com baixa latência. As transações ações comuns para recuperação e persistência de dados em várias aplicações, como por exemplo, adicionar produtos ao carrinho de compras de uma loja virtual, consultar o saldo bancário, etc. 
-O padrão de acesso quando alguns registros são criados ou atualizados conforme as interações do usuário chama-se Online Transaction Processing (OLTP).
+O padrão de acesso quando alguns registros são criados ou atualizados conforme as interações do usuário chama-se \textit{Online Transaction Processing}(OLTP).
 
 \paragraph{} Quando os bancos de dados são utilizados para fins analíticos, no entanto, a principal característica do padrão de acesso deixa de ser a manipulação
 de alguns registros. Nesses casos de uso, as consultas mais comuns envolvem a agregação e processamento de uma grande quantidade de registros enquanto a 
-modificação destes registros ocorre com menor frequência e geralmente, em lotes. Este padrão de acesso se chama Online Analytics Processing (OLAP).
+modificação destes registros ocorre com menor frequência e geralmente, em lotes. Este padrão de acesso se chama \textit{Online Analytics Processing}(OLAP).
 
-\paragraph{} Inicalmente, os mesmos bancos de dados eram utilizados para ambos os propósitos. A tendência em separar os sitemas OLTP dos sistemas OLAP deu origem as Data Warehouses.\cite{kleppmann2017designing}
+\paragraph{} Inicalmente, os mesmos bancos de dados eram utilizados para ambos os propósitos. A tendência em separar os sitemas OLTP dos sistemas OLAP deu origem as \textit{Data Warehouse}s.\cite{kleppmann2017designing}
 
-\subsection{Data Warehouses}
+\subsection{\textit{Data Warehouse}s}
 
-\paragraph{} De acordo com Ali El-Sappagh et al. \cite{el2011proposed}, um Data Warehouse é um conjunto de tecnologias que permitem a uma instituição tomar decisões melhores e mais rápidas, diferindo de bancos de dados tradicionais no sentido de serem variantes no tempo, orientados por assunto, não normalizados e otimizados para OLAP.
+\paragraph{} De acordo com Ali El-Sappagh et al. \cite{el2011proposed}, um \textit{Data Warehouse} é um conjunto de tecnologias que permitem a uma instituição tomar decisões melhores e mais rápidas, diferindo de bancos de dados tradicionais no sentido de serem variantes no tempo, orientados por assunto, não normalizados e otimizados para OLAP.
 
-\paragraph{} Sendo assim, o objetivo da data warehouse é fornecer o aparato tecnológico para a realização de análises sobre grandes volumes de dados agregados de diferentes fontes, sendo estas provenientes dos diferentes domínios de atuação da instituição.
+\paragraph{} Sendo assim, o objetivo da \textit{Data Warehouse} é fornecer o aparato tecnológico para a realização de análises sobre grandes volumes de dados agregados de diferentes fontes, sendo estas provenientes dos diferentes domínios de atuação da instituição.
 
 \subsection{Ferramentas e Processos de ETL} 
 
-\paragraph{} Ferramentas de ETL (Extract-Transform-Loading) são soluções em software que permitem a integração de diferentes fontes de dados a uma data warehouse.
+\paragraph{} Ferramentas de \textit{Extract-Transform-Loading}(ETL) são soluções em software que permitem a integração de diferentes fontes de dados a uma \textit{Data Warehouse}.
 De maneira geral, um processo de ETL realiza um mapeamento entre dois bancos de dados, possibilitando a aplicação de operações sobre o conjunto mapeado com o intuito de adequá-lo ao esquema do destino.
 
 \paragraph{} ETLs podem aceitar como entradas dados de diversas origens, como bancos de dados de provedores distintos, arquivos de texto ou planilhas. O passo inicial da ETL é a extração, sendo responsável pela captura dos dados. Este passo implementa as integrações para cumprir com os requisitos de operação específicos de cada origem, como por exemplo o protocolo de comunicação e o formato de armazenamento.
 
-\paragraph{} No momento da criação da Data Warehouse, o processo de extração é realizado em cima de um conjunto massivo de dados, realizando a extração inicial. Este processo é realizado uma única vez. \cite{kimball2008data} Após a extração inicial, os dados das fontes são obtidos a partir de Changed Data Capture. Isso implica que nas próximas extrações realizadas, apenas os dados novos ou alterados serão carregados. O software deve determinar quais dados serão carregados. Isso pode ser feito a partir de técnicas como observar o log do banco de dados, auditar colunas específicas, observar a data de modificação de arquivos, dentre outras.
+\paragraph{} No momento da criação da \textit{Data Warehouse}, o processo de extração é realizado em cima de um conjunto massivo de dados, realizando a extração inicial. Este processo é realizado uma única vez. \cite{kimball2008data} Após a extração inicial, os dados das fontes são obtidos a partir de Changed Data Capture. Isso implica que nas próximas extrações realizadas, apenas os dados novos ou alterados serão carregados. O software deve determinar quais dados serão carregados. Isso pode ser feito a partir de técnicas como observar o log do banco de dados, auditar colunas específicas, observar a data de modificação de arquivos, dentre outras.
 
 \paragraph{} O proximo passo do processo de ETL é a transformação. Este passo tem o objetivo de conformar o conjunto de dados de entrada as suas expectativas de uso, provendo um conjunto de dados consistente e sem ambiguidades a partir da limpeza e agregação da entrada. As regras utilizadas para transformação são armazenadas sob a forma de metadados.
 
