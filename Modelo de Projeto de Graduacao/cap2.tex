@@ -82,7 +82,14 @@ e definem o formato de armazenamento da informação, garantindo sua consistênc
 
 \subsection{OLTP e OLAP}
 
-\paragraph{} TODO. Ver o livro data intensive
+\paragraph{} Uma transação em um banco de dados é um conjunto de leituras e escritas com baixa latência. As transações ações comuns para recuperação e persistência de dados em várias aplicações, como por exemplo, adicionar produtos ao carrinho de compras de uma loja virtual, consultar o saldo bancário, etc. 
+O padrão de acesso quando alguns registros são criados ou atualizados conforme as interações do usuário chama-se Online Transaction Processing (OLTP).
+
+\paragraph{} Quando os bancos de dados são utilizados para fins analíticos, no entanto, a principal característica do padrão de acesso deixa de ser a manipulação
+de alguns registros. Nesses casos de uso, as consultas mais comuns envolvem a agregação e processamento de uma grande quantidade de registros enquanto a 
+modificação destes registros ocorre com menor frequência e geralmente, em lotes. Este padrão de acesso se chama Online Analytics Processing (OLAP).
+
+\paragraph{} Inicalmente, os mesmos bancos de dados eram utilizados para ambos os propósitos. A tendência em separar os sitemas OLTP dos sistemas OLAP deu origem as Data Warehouses.\cite{kleppmann2017designing}
 
 \subsection{Data Warehouses}
 
@@ -103,7 +110,6 @@ De maneira geral, um processo de ETL realiza um mapeamento entre dois bancos de 
 
 \paragraph{} A conclusão do processo de ETL se dá com o passo de carga. Essa etapa do processo é responsável por escrever os dados resultantes da transformação nos repositórios de dados que serão utilizados pelos usuários finais em seus respectivos mecanismos de armazenamento.
 
-
 \section{Anonimização e Reidentificação}
 
 \subsection{Anonimização}
@@ -122,8 +128,6 @@ substância pesquisada em certos grupos de indivíduos. Por outro lado, é funda
 \paragraph{} Em 2008 Arvind Narayanan e Vitaly Shmatikov demonstraram uma metologia robusta\cite{netflixDeanon}  que permitiu quebrar o anonimato de um conjunto de dados da Netflix. Os pesquisadores utilizaram as preferencias individuais, recomendações e registro de transações do conjunto anonimizado e dados públicos disponíveis no IMDB, revelando a identidade dos usuários, seu alinhamento político aparente, dentre outras informações pessoais.
 
 \paragraph{} Outro exemplo deste tipo de ataque foi demonstrado por Malin e Sweeney\cite{malin2004} em 2004 ao recuperar informações genéticas de pacientes a partir dos padrões de visitação e dados disponíveis no ambiente informacional da saúde.
-
-TODO: (EXPANDIR)
 
 \section{Técnicas de Anonimização}
 
