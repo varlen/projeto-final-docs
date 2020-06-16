@@ -56,8 +56,28 @@ no banco de dados; deslocamento de valores de instantes de tempo e intervalos de
 
 \subsection{Presidio}
 
-\cite{presidio}
+\paragraph{} Presidio é um software livre criado pela Microsoft\cite{presidio} com o intuito de ajudar no gerenciamento de informações textuais sensíveis. 
+Suas funcionalidades provém capacidades analíticas e anonimização para dados como nomes, lugares, números de documentos específicos dos Estados Unidos e Reino Unido, 
+dados financeiros, carteiras de criptomoedas, dentre outros. 
 
-TODO
+\paragraph{} O programa é capaz de extrair entidades de dados textuais não estruturados a partir de listas, expressões regulares ou processamento de linguagem natural (NER). 
+É possível expandir suas funcionalidades através da API ou alterando-se o código-fonte, permitindo que seu uso seja adaptado a diferentes necessidades instituicionais.
+
+\paragraph{} Ao operar sobre um conjunto de dados textuais não-estruturados, a ferramenta detecta automaticamente informações pessoais (PII) e gera uma análise sobre os tipos de informações
+contendo uma pontuação que pode ser utilizada para inferir a qualidade do texto anonimizado. A saída deste processo de anonimização são os dados estruturados com as informações pessoais suprimidas.
+
+\paragraph{} No momento da escrita deste trabalho, a ferramenta também oferece em caráter experimental a possibilidade de detectar textos e aplicar anonimização por supressão em imagens 
+a partir de reconhecimento óptico de caracteres.
+
+\paragraph{} A ferramenta possui suporte a API REST; aos mecanismos de armazenamento em nuvem Azure Blob STorage e S3; aos sistemas de fluxos Kafka e Azure Event Hub como entradas de dados.
+Sua saída pode ser enviada para bancos de dados MySQL, MSSQL e Postgres ou nos mecanismos de amazenamento e fluxos previamente listados.
+
+\paragraph{} Sua implementação utiliza as linguagens de programação Go e Python. A arquitetura segue o padrão de microserviços em containers coordenados através de Kubernetes. Também utiliza-se Redis para cache.
+
+\paragraph{} Os principais serviços realizam a Análise, Anonimização, Anonimização de Imagens e Reconhecimento Óptico de Caracteres. 
+Além disso, também existem serviços únicos para API e agendamento, além do acesso de leitura e escrita as fontes de dados. Esta arquitetura fornece resiliência para
+as comunicações entre diferentes serviços através de \textit{circuit-breaking}, tentativas, balanceamento de carga, dentre outras técnicas. 
+O uso de containers diminui a necessidade do gerenciamento de dependências nos sistemas alvo da implantação, uma vez que estas e suas respectivas configurações
+estão inclusas nas imagens utilizadas para montagem.
 
 \section{Visão Geral}
