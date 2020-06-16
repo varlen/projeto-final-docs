@@ -69,15 +69,23 @@ contendo uma pontuação que pode ser utilizada para inferir a qualidade do text
 \paragraph{} No momento da escrita deste trabalho, a ferramenta também oferece em caráter experimental a possibilidade de detectar textos e aplicar anonimização por supressão em imagens 
 a partir de reconhecimento óptico de caracteres.
 
-\paragraph{} A ferramenta possui suporte a API REST; aos mecanismos de armazenamento em nuvem Azure Blob STorage e S3; aos sistemas de fluxos Kafka e Azure Event Hub como entradas de dados.
+\paragraph{} A ferramenta possui suporte a API REST; aos mecanismos de armazenamento em nuvem Azure Blob Storage e S3; aos sistemas de fluxos Kafka e Azure Event Hub como entradas de dados.
 Sua saída pode ser enviada para bancos de dados MySQL, MSSQL e Postgres ou nos mecanismos de amazenamento e fluxos previamente listados.
 
+\paragraph{} É possível criar tarefas agendadas para realizar a ETL de anonimização dos dados periodicamente através de arquivos de configuração.
+
 \paragraph{} Sua implementação utiliza as linguagens de programação Go e Python. A arquitetura segue o padrão de microserviços em containers coordenados através de Kubernetes. Também utiliza-se Redis para cache.
+
+\paragraph{} As funcionalidades que dependem do processamento de linguagem natural utilizam a biblioteca SpaCy do Python. Porém, no momento de escrita, somente
+os modelos para lingua inglesa são suportados.\cite{presidio-issue303} Dentre as modificações necessárias para utilização da ferramenta no contexto nacional está a utilização de um modelo
+adequado com suporte a lingua portuguesa. Este modelo está disponível no site da biblioteca\cite{spacy}, assim como modelos para Alemão, Francês, Espanhol, dentre outros idiomas.
 
 \paragraph{} Os principais serviços realizam a Análise, Anonimização, Anonimização de Imagens e Reconhecimento Óptico de Caracteres. 
 Além disso, também existem serviços únicos para API e agendamento, além do acesso de leitura e escrita as fontes de dados. Esta arquitetura fornece resiliência para
 as comunicações entre diferentes serviços através de \textit{circuit-breaking}, tentativas, balanceamento de carga, dentre outras técnicas. 
-O uso de containers diminui a necessidade do gerenciamento de dependências nos sistemas alvo da implantação, uma vez que estas e suas respectivas configurações
-estão inclusas nas imagens utilizadas para montagem.
+O uso de containers diminui a ocorrencia de problemas no gerenciamento de dependências\cite{merkel2014docker} uma vez que estas e suas respectivas configurações
+estão inclusas nas imagens utilizadas para montagem, efetivamente facilitando a implementação.
+
+
 
 \section{Visão Geral}
