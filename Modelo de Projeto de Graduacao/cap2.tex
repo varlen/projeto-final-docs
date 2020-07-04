@@ -1,9 +1,10 @@
 \chapter{Fundamentação}
 \label{cap2}
 
-\paragraph{} O presente capítulo propõe-se a introduzir o leitor ao entendimento acadêmico existente sobre o conceito de privacidade, especificamente no que contempla a área de Tecnologia da Informação com foco nos pontos de interesse ao presente trabalho,
-principalmente com relação a anonimização e desanonimização de informações pessoais. 
-Visando uma maior familiarização do leitor ao domínio deste trabalho, também serão introduzidos conceitos de armazenamento de dados.
+\paragraph{} O presente capítulo propõe-se a introduzir o leitor ao entendimento existente sobre o conceito de privacidade, principalmente no que contempla a área de Tecnologia da Informação, o respectivo impacto social e a consequente legislação, com foco nos pontos de interesse deste trabalho,
+principalmente com relação ao tratamento de informações pessoais. 
+Inicia-se pelo ponto de vista mais amplo e filosófico da relação entre o indivíduos e privacidade, de onde se derivam suas consequencias sociotécnicas.
+A parte final do capítulo dedica-se a eventual familiarização do leitor ao domínio de implementação deste trabalho, apresentando definições técnicas relativas a armazenamento de dados.
 
 \section{Privacidade}
 
@@ -22,17 +23,36 @@ A privacidade, definida por Warren e Brandeis como ``direito à reserva de infor
 \paragraph{} De acordo com \cite{lgpd-evandro}, a Web 2.0 e o consequente crescimento da cultura participativa
 aonde os próprios usuários consumidores são também geradores de conteúdo implicou numa percepção de risco relacionado a privacidade cada vez maior.
 
-\paragraph{} A ampla disponibilidade de dados na Internet trouxe o tema às pautas dos debates políticos 
+\paragraph{} O contexto tecnológico existente permite que instituições públicas e privadas façam uso profuso de dados pessoais para desempenhar suas atividades. Dentro deste contexto, as atividades realizadas por individuos são frequentemente rastreadas e utilizadas como insumo; Em alguns casos, sem seu devido conhecimento ou consentimento.
+
+\paragraph{} A percepção sobre a ampla disponibilidade de dados na Internet trouxe o tema às pautas dos debates políticos 
 mundiais, culminando na implementação de regulamentações para padronizar o tratamento adequado
-a estas informações, de modo a impedir o abuso no seu uso e garantir o direito a privacidade de cada indivíduo.
+a estas informações, de modo a impedir o abuso no seu uso e garantir o direito a privacidade individual.
 
-\subsection{A General Data Protection Regulation europeia}
 
-\paragraph{} TODO
+\subsection{A \textit{General Data Protection Regulation} europeia}
+
+\paragraph{} A GDPR é o conjunto de regras europeias definidas para o tratamento de dados, criadas com o objetivo de garantir que o processamento de dados respeite os direitos fundamentais de cada indivíduo.
+
+\paragraph{} Seu texto no diário oficial da Europa afirma que o avanço tecnológico acelerado
+e a globalização impuseram novos desafios para a proteção de dados pessoais\cite{eu-2016-679} e visa provisionar a consistência necessária para remover barreiras no fluxo de dados entre diferentes países da União Européia. 
+
+\paragraph{} Para isto, o texto da GDPR instaura que a aplicação de suas regras deve ser homogêneas entre os países e abre margem para que regras locais sejam definidas de acordo com a necessidade dos agentes públicos, como por exemplo, para questões de segurança nacional.
+
+\paragraph{} A lei define o detalhamento dos direitos e deveres de quem se utiliza do processamento de dados pessoais, assim como mecanismos para fiscalização do respeito as regras e sanções aplicáveis nos países membros. A proteção forncida por este dispositivo legal é aplicável a individuos de qualquer nacionalidade ou residência.
+
+\paragraph{} A GDPR gera a necessidade de adaptação também fora da Europa, pois estabelece que o processamento de dados oriundos de inviduos pertencentes a União Europeia por instituições não pertencentes para o oferencimento de bens e serviços ou rastreamento também estará sujeito a este conjunto de regras. 
+
+\paragraph{} É estabelecido que os provedores de serviços devem coletar o consentimento dos usuários sobre o uso de seus dados para diferentes escopos, informando o usuário sobre estes de maneira clara, permitindo a seleção parcial de escopos, sem a utilização de \textit{dark patterns}, como caixas de seleção pré-marcadas ou impedimento da utilização do serviço. O consentimento deve ser fornecido livremente pelo usuário, no sentido em que, não se deve obrigar o usuário a fornecer consenso para um escopo se a ação que o usuário deseja realizar pertence ou depende de um outro escopo. Informações textuais sobre a utilização dos dados coletados devem estar escritas de maneira clara, sem ambiguidades e facilmente acessíveis.
+
+\paragraph{} Além disso, o texto da lei também especifica que o processamento de dados deve ser utilizado somente quando o objetivo de uma atividade não puder ser realizado por outros meios e requer que nestes casos, a instituição implemente mecanismos para prevenção de acessos não autorizados aos dados e seus instrumentos de processamento, além de realizar o expurgo destes dados com a periodicidade adequada. Para que o processamento ocorra de maneira legal, o consentimento do usuário deve ter sido previamente concedido à instituição e a instituição deve ser capaz de demonstrar este consentimento.
+
+
+
 
 \subsection{A Lei Geral de Protecao de Dados brasileira}
 
-\paragraph{} TODO
+\paragraph{} 
 
 \section{Bases de Dados}
 
