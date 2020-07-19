@@ -44,7 +44,7 @@ no banco de dados; deslocamento de valores de instantes de tempo e intervalos de
 
 \paragraph{} Os criadores do ARX\cite{prasser2020flexible} explicam que o seu objetivo é produzir um software livre com alto grau de automação que fornece uma gama variada de tecnicas de anonimização. Várias destas técnicas estão descritas em publicações especificas e incluem algoritmos criados a partir de modelos estatísticos, teoria dos jogos, privacidade diferencial, dentre outras. O programa fornece uma interface gráfica para operação e sua entrada de dados é feita a partir de arquivos CSV.
 
-\paragraph{} O ARX utiliza um algoritmo de busca global para transformação de dados com "full-domain generalization" e supressão de registros. Full-domain generalization implica que todos os  valores de um atributo são transformados ao mesmo nível de generalização em todos os registros.
+\paragraph{} O ARX utiliza um algoritmo de busca global para transformação de dados com \textit{full-domain generalization} e supressão de registros. \textit{Full-domain generalization} implica que todos os  valores de um atributo são transformados ao mesmo nível de generalização em todos os registros.
 
 \paragraph{} Ou seja, um atributo (ou coluna) categórico de Gênero em um registro típicamente possui os valores Masculino, Feminino e Outros. Esse atributo é generalizado a um nível hierarquico acima através da supressão. Ou seja, o valor armazenado no registro é transformado em "*". No caso de um atributo numérico de idade, a generalização transforma um valor específico em uma faixa etária. A extensão da faixa depende do nível de generalização aplicado. O resultado de todas as operações de transformação deve considerar a relação de custo-benefício entre anonimização e utilidade.
 

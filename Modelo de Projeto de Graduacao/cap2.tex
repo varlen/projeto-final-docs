@@ -50,14 +50,26 @@ e a globalização impuseram novos desafios para a proteção de dados pessoais\
 
 \subsection{A Lei Geral de Proteção de Dados brasileira}
 
-\paragraph{} TODO
+\paragraph{} No Brasil, a lei número 13.709/2018\cite{br-13709-2018} é a responsável pelas diretivas para tratamento de dados pessoais. O texto possui múltiplos tópicos similares a lei europeia. No momento da escrita deste trabalho, a lei começará a vigorar em maio de 2021. 
+
+\paragraph{} A lei considera como dados pessoais informações relacionadas a pessoa natural identificada ou identificável e tratamento como qualquer operação realizada com dados pessoais. Além disso, definem-se agentes de tratamento de dados - Controlador: aquele a quem compete as decisões referentes ao tratamentos de dados pessoais; Operador: Aquele que realiza o tratamento de dados pessoais em nome do controlador. Ambas entidades podendo ser pessoa natural ou jurídica, de direito público ou privado. Titular é a pessoa natural cujos dados pessoais são objeto de tratamento.
+
+\paragraph{} Assim como a GDPR, a lei brasileira é destinada a proteção de individuos no território nacional independentemente da origem e localização da instituição que processa os dados.
+
+\paragraph{} Com relação as obrigações a serem cumpridas pelos agentes de tratamento de dados, a lei brasileira institui a necessidade de coleta de consentimento revogável e fornecimento de acesso às informações de tratamento dos dados, incluindo a finalidade, forma, duração e identificações. Também
+requere-se que o controlador informe previamente o titular dos dados sobre mudanças na sua finalidade de uso. 
+
+\paragraph{} A lei nacional cria a Agência Nacional de Proteção de Dados e o Conselho Nacional de Proteção de Dados Pessoais e Privacidade, órgãos governamentais responsaveis pela fiscalização e aplicação das sanções definidas no texto da lei.
+
+\paragraph{} Um ponto do texto de específico interesse neste trabalho é a anonimização, definida como a utilização de meios técnicos razoáveis e disponíveis no momento do tratamento, por meio das quais um dado perde a possibilidade de associação direta ou indireta, a um indivíduo. Dados anonimizados não são considerados como dados pessoais se o processo de anonimização não for factivelmente reversível, considerando-se o custo e o tempo necessários.
+
 
 \section{Bases de Dados}
 
 \subsection{Tipos, Atributos e Registros}
 
 \paragraph{} De maneira geral, um registro é a unidade de armazenamento de dados. Por exemplo, num consultório médico, existem
-diversas fichas cadastrais dos pacientes, contendo nome, números de documentos, informações de contato e histórico de consultas. Essas fichas, quando implementadas em um meio digital, seja através de um software que acessa um banco de dados ou mesmo de uma planilha, podem ser armazenadas sob a forma de linhas em uma tabela. Cada linha desta tal tabela hipotética é um registro e cada uma das colunas nesta linha é um atributo do registro.
+diversas fichas cadastrais dos pacientes, contendo nome, números de documentos, informações de contato e histórico de consultas. Essas fichas, quando implementadas em um meio eletrônico, seja através de um software que acessa um banco de dados ou mesmo de uma planilha, podem ser armazenadas sob a forma de linhas em uma tabela. Cada linha desta tal tabela hipotética é um registro e cada uma das colunas nesta linha é um atributo do registro.
 
 \begin{table}[ht]
     \caption{Exemplos de registros para ficha cadastral de pacientes em uma clínica}
@@ -141,15 +153,15 @@ substância pesquisada em certos grupos de indivíduos. Por outro lado, é funda
 
 \subsection{Reidentificação}
 
-\paragraph{} É trivial perceber que os atributos que levam a associação direta de um individuo com seus registros devem ser suprimidos do conjunto de dados. Esta intuição entretanto não leva em consideração a possibilidade de reidentificação de pessoas no conjunto anonimizado através do processamento de múltiplos registros.
+\paragraph{} É trivial perceber que os atributos que levam a associação direta de um individuo com seus registros devem ser suprimidos do conjunto de dados. Esta intuição entretanto não leva em consideração a possibilidade de reidentificação de pessoas no conjunto anonimizado através do processamento de múltiplos registros de fontes diversas.
 
-\paragraph{} Em 2008 Arvind Narayanan e Vitaly Shmatikov demonstraram uma metologia robusta\cite{netflixDeanon}  que permitiu quebrar o anonimato de um conjunto de dados da Netflix. Os pesquisadores utilizaram as preferencias individuais, recomendações e registro de transações do conjunto anonimizado e dados públicos disponíveis no IMDB, revelando a identidade dos usuários, seu alinhamento político aparente, dentre outras informações pessoais.
+\paragraph{} Em 2008 Arvind Narayanan e Vitaly Shmatikov demonstraram uma metologia robusta\cite{netflixDeanon}  que permitiu quebrar o anonimato de um conjunto de dados da Netflix. Os pesquisadores utilizaram as preferências individuais, recomendações e registro de transações do conjunto anonimizado e dados públicos disponíveis no site \textit{Internet Movie Database} (IMDB), revelando a identidade dos usuários, seu alinhamento político aparente, dentre outras informações pessoais.
 
 \paragraph{} Outro exemplo deste tipo de ataque foi demonstrado por Malin e Sweeney\cite{malin2004} em 2004 ao recuperar informações genéticas de pacientes a partir dos padrões de visitação e dados disponíveis no ambiente informacional da saúde.
 
 \section{Técnicas de Anonimização}
 
-\paragraph{} A avaliação de riscos sobre dados sensíveis pode ser feita a partir da definição dos seguinte perfis: A instituição, responsável pela governança dos dados; O adversário, que deseja abusar do conjunto de dados divulgado para obter informações implicitas, possivelmente violando a privacidade dos individuos representados nos registros; O terceiro, interessados em informações analíticas e estruturais no conjunto de dados divulgado. A anonimização transforma um conjunto de dados inicial em um conjunto anonimizado.
+\paragraph{} A avaliação de riscos sobre dados sensíveis pode ser feita a partir da definição dos seguinte perfis: A instituição, responsável pela governança dos dados; O adversário, que deseja abusar do conjunto de dados divulgado para obter informações implicitas, possivelmente violando a privacidade dos individuos representados nos registros; O terceiro, interessados em informações analíticas e estruturais no conjunto de dados divulgado. A anonimização transforma um conjunto de dados inicial em um conjunto anonimizado, ou seja, livre de informações pessoais identificaveis.
 
 \paragraph{} Paul Ohm\cite{ohm2009} diz que "Dados podem ser úteis ou perfeitamente anônimos mas nunca ambos." Neste sentido, uma aplicação de anonimização bem sucedida deve impedir o adversário de recuperar informações a partir da associação deste com informações auxiliares de sua posse e ao mesmo tempo deve manter a utilidade dos dados para utilização de terceiros. 
 
