@@ -66,9 +66,23 @@ requere-se que o controlador informe previamente o titular dos dados sobre mudan
 
 \section{Bases de Dados}
 
+\paragraph{} Mostram-se a seguir, conceitos relacionados a armazenamento eletrônico de dados que serão explorados ao longo do trabalho. 
+
+\subsection{Dados Estruturados e Não-Estruturados}
+
+\paragraph{} Quando se preenche um formulário em uma folha de papel, as informações inseridas estarão espacialmente confinadas, de acordo com o contexto previamente existente, no caso o nome dos campos impressos na folha.
+
+\paragraph{} Esse confinamento espacial dos dados em cada campo implica na existencia de uma estrutura, aonde é possível localizar uma informação específica de acordo com o nome do campo.
+
+\paragraph{} Neste exemplo, o nome do campo é um metadado, ou seja, uma informação sobre o dado específico. O mesmo raciocínio se aplica a dados preenchidos em um formulário eletrônico.
+
+\paragraph{} Todavia, quando se escreve uma carta, realiza-se um telefonema, há um espalhamento das informações apresentadas e não será possível associar diretamente uma informação a um rótulo como no caso do formulário. Em outras palavras, o meio com que a informação é apresentado não implica em uma estrutura que possa ser utilizada para recuperar, sem processamento adicional, uma parte dessa informação.
+
+\paragraph{} De acordo com Plejic et Al., dados estruturados sempre são apresentados juntos aos metadados\cite{plejic2008}.
+
 \subsection{Tipos, Atributos e Registros}
 
-\paragraph{} De maneira geral, um registro é a unidade de armazenamento de dados. Por exemplo, num consultório médico, existem
+\paragraph{} De maneira geral, um registro é uma unidade de dados estruturados. Por exemplo, num consultório médico, existem
 diversas fichas cadastrais dos pacientes, contendo nome, números de documentos, informações de contato e histórico de consultas. Essas fichas, quando implementadas em um meio eletrônico, seja através de um software que acessa um banco de dados ou mesmo de uma planilha, podem ser armazenadas sob a forma de linhas em uma tabela. Cada linha desta tal tabela hipotética é um registro e cada uma das colunas nesta linha é um atributo do registro.
 
 \begin{table}[ht]
