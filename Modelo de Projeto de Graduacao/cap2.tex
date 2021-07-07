@@ -167,7 +167,7 @@ substância pesquisada em certos grupos de indivíduos. Por outro lado, é funda
 
 \subsection{Reidentificação}
 
-\paragraph{} É trivial perceber que os atributos que levam a associação direta de um individuo com seus registros devem ser suprimidos do conjunto de dados. Esta intuição entretanto não leva em consideração a possibilidade de reidentificação de pessoas no conjunto anonimizado através do processamento de múltiplos registros de fontes diversas.
+\paragraph{} É trivial perceber que os atributos que levam a associação direta de um individuo com seus registros devem ser suprimidos do conjunto de dados. Esta intuição entretanto não leva em consideração a possibilidade de reidentificação de pessoas no conjunto anonimizado através do processamento de múltiplos registros de fontes diversas. 
 
 \paragraph{} Em 2008 Arvind Narayanan e Vitaly Shmatikov demonstraram uma metologia robusta\cite{netflixDeanon}  que permitiu quebrar o anonimato de um conjunto de dados da Netflix. Os pesquisadores utilizaram as preferências individuais, recomendações e registro de transações do conjunto anonimizado e dados públicos disponíveis no site \textit{Internet Movie Database} (IMDB), revelando a identidade dos usuários, seu alinhamento político aparente, dentre outras informações pessoais.
 
@@ -175,35 +175,49 @@ substância pesquisada em certos grupos de indivíduos. Por outro lado, é funda
 
 \section{Técnicas de Anonimização}
 
-\paragraph{} A avaliação de riscos sobre dados sensíveis pode ser feita a partir da definição dos seguinte perfis: A instituição, responsável pela governança dos dados; O adversário, que deseja abusar do conjunto de dados divulgado para obter informações implicitas, possivelmente violando a privacidade dos individuos representados nos registros; O terceiro, interessados em informações analíticas e estruturais no conjunto de dados divulgado. A anonimização transforma um conjunto de dados inicial em um conjunto anonimizado, ou seja, livre de informações pessoais identificaveis.
+\paragraph{} A avaliação de riscos sobre dados sensíveis pode ser feita a partir da definição dos seguinte perfis: A instituição, responsável pela governança dos dados; O adversário, que deseja abusar do conjunto de dados divulgado para obter informações implicitas, possivelmente violando a privacidade dos individuos representados nos registros; O terceiro, interessados em informações analíticas e estruturais no conjunto de dados divulgado. A anonimização transforma um conjunto de dados inicial em um conjunto anonimizado, ou seja, livre de informações pessoais associaveis a um único individuo.
 
 \paragraph{} Paul Ohm\cite{ohm2009} diz que "Dados podem ser úteis ou perfeitamente anônimos mas nunca ambos." Neste sentido, uma aplicação de anonimização bem sucedida deve impedir o adversário de recuperar informações a partir da associação deste com informações auxiliares de sua posse e ao mesmo tempo deve manter a utilidade dos dados para utilização de terceiros. 
 
 \paragraph{} Neste escopo, algumas técnicas podem ser utilizadas para implementar a anonimização de registros, de acordo com as metas de compromisso entre utilidade e segurança das informações.
 
-\subsection{Aleatorização e adição de ruído}
+\subsection{Pseudonimização}
+TODO
 
-\paragraph{} A aleatorização é uma técnica proposta por Warner\cite{warner1965randomized} com o objetivo de resolver o seguinte problema: estimar qual parcela de pessoas em uma população possui um atributo específico sem que seja possível obter a informação para uma amostra individual. 
+\subsection{Resposta Aleatorizada}
+
+\paragraph{} A resposta aleatorizada é uma técnica proposta por Warner\cite{warner1965randomized} com o objetivo de resolver o seguinte problema: estimar qual parcela de pessoas em uma população possui um atributo específico sem que seja possível obter a informação para uma amostra individual. Em outras palavras, torna possível identificar a proporção de indivíduos com determinada caracteristica em um grupo de estudo, como por exemplo consumo de alcool e drogas ilícitas\cite{davila2010modelo}, sem permitir atribuição da caracteristica a um único indivíduo.
+
+\paragraph{} Para um atributo binário, esta técnica pode ser exemplificada a partir do seguinte algoritmo, como mostrado por Warner: Um pesquisador solicita que um volutário pesquisado jogue uma moeda sem que o pesquisador veja seu resultado. Caso o resultado deste arremesso seja cara, o volutário joga novamente a moeda e responde 0 ou 1 de acordo com o resultado da moeda. Caso o arremesso inicial seja coroa, o voluntário responde a resposta verdadeira.  Desta forma, não é possível saber se o voluntário pertence ou não a um grupo porém é possível extrair informações relativas ao grupo a partir da agregação dos resultados de vários voluentários.
 
 \paragraph{} A aplicação computacional desta técnica foi demonstrada por Agrawal e Srikant\cite{agrawal2000privacy} no contexto da mineração de dados, propondo um procedimento para construir classificadores de árvore de decisão acurados a partir de um conjunto de dados cujos valores originais foram alterados. Essas alterações podem ser através da substituição de uma informação pela sua alocação dentro de um conjunto com risco menor ou através da adição de uma variável aleatória ao valor real.
 
-\paragraph{} Aproveita-se do fato de que cada atributo em um registro implica em um potencial risco de privacidade diferente. Um usuário pode não se sentir confortável para expor o valor exato de seu salário, mas não ter problemas em revelar a faixa salarial, por exemplo.
+\paragraph{} Uma outra implementação foi demonstrada por Erlingsson et al\cite{erlingsson2014rappor}, coletando estatísticas de uso do navegador Google Chrome com garantias de privacidade dos usuários.
 
-\paragraph{} A aleatorização para um atributo binário pode ser exemplificada a partir do algoritmo mostrado por Dwork et al.\cite{dwork2014algorithmic}: Arremessa-se uma moeda. Caso coroa, então responde-se a informação original. Do contrário, realiza-se um novo arremesso e responde-se ``sim'' para coroa ou ``não'' para cara.
+\paragraph{} Nota-se que este tipo de algoritmo pode ser implementado diretamente no ponto de coleta de dados, permitindo que somente dados cuja privacidade já está garantida sem a necessidade de processamento adicional sejam armazenados.
+
 
 \subsection{Privacidade Diferencial}
 
-\paragraph{} De acordo com Dwork\cite{dwork2008differential}, a privacidade diferencial é uma definição e não um algoritmo específico. 
+\paragraph{} De acordo com Dwork\cite{dwork2008differential}, a privacidade diferencial é uma definição e não um algoritmo específico. Isso implica na existência de uma classe de algoritmos diferencialmente privados satisfazendo uma condição determinada.
 
-\paragraph{} A autora argumenta que conjuntos de dados diferencialmente privados garantem que seja possível inferir conclusões a partir de um mesmo que um indivíduo opte por não permitir que seus dados sejam inclusos e permitem a um curador garantir que um indivíduo não seja afetado por permitir a utilização de seus dados.
+\paragraph{} Um algoritmo deste tipo deve respeitar a definição matemática de privacidade diferencial\cite{dwork2011differential} conforme demonstrada a seguir.
 
-\paragraph{} Isso permite que um indivíduo participe de uma pesquisa sem que suas respostas individuais sejam reveladas.
+\paragraph{} Seja $X$ um banco de dados contendo n registros, cada um pertencente a um único indivíduo. 
+Seja $\mathbb{D}$ o conjunto formado por todos os possíveis bancos de dados. 
+Seja $\mathbb{Q}$ o conjunto formado por todas as possíveis consultas. Existe um algortimo $M$, referido como mecanismo, que tem como argumentos um banco de dados $X$ e opcionalmente uma consulta $q$.
 
-TODO (EXPANDIR; possivelmente incluir a definição matemática)
+\paragraph{} Seja também a diferença simétrica entre dois bancos de dados $X$ e $X'$ denotadas por $X \ominus X'$, equivalente ao conjunto de registros que aparece em um banco ou outro mas não em ambos (análoga a operação lógica XOR). Considera-se neste caso. Finalmente, seja $\varepsilon$ o fator de privacidade. Então:
 
+\newtheorem{definition}{Definição}
+\begin{definition}\cite{dwork2011differential}
+     Um mecanismo satisfaz privacidade $\varepsilon$-diferencial se para todo par de bancos de dados $X$,$X'$ e para todo subconjunto $S \subseteq Range(M)$ e toda consulta $q \in \mathbb{Q}$(caso aplicável)
+     \[ \frac{\Pr \left[M\left(X,q\right)  \in  S \right]}{\Pr \left[M\left(X',q\right)  \in  S \right]} = e^{\varepsilon\vert X \ominus X' \vert }\]
+\end{definition}
+
+\paragraph{} Desta forma, a privacidade diferencial fornece um arcabouço para avaliação quantitativa de garantias de privacidade em algoritmos.
 
 \subsection{Agregação}
-TODO: (Possivelmente juntar as tecnicas a seguir em um tópico único)
 
 \subsection{k-anonimização}
 
@@ -216,11 +230,8 @@ Aspectos possíveis de avaliação:
     - eficiencia
     - efetividade
 
-\subsection{Pseudonimização}
-TODO:(VERIFICAR SE SERÁ PERTINENTE...)
 
-\subsection{Comparativo das técnicas de anonimização}
-TODO
+
 
 
 
