@@ -196,7 +196,6 @@ TODO
 
 \paragraph{} Nota-se que este tipo de algoritmo pode ser implementado diretamente no ponto de coleta de dados, permitindo que somente dados cuja privacidade já está garantida sem a necessidade de processamento adicional sejam armazenados.
 
-
 \subsection{Privacidade Diferencial}
 
 \paragraph{} De acordo com Dwork\cite{dwork2008differential}, a privacidade diferencial é uma definição e não um algoritmo específico. Isso implica na existência de uma classe de algoritmos diferencialmente privados satisfazendo uma condição determinada.
@@ -215,22 +214,30 @@ Seja $\mathbb{Q}$ o conjunto formado por todas as possíveis consultas. Existe u
      \[ \frac{\Pr \left[M\left(X,q\right)  \in  S \right]}{\Pr \left[M\left(X',q\right)  \in  S \right]} = e^{\varepsilon\vert X \ominus X' \vert }\]
 \end{definition}
 
-\paragraph{} Desta forma, a privacidade diferencial fornece um arcabouço para avaliação quantitativa de garantias de privacidade em algoritmos.
+\paragraph{} Em outras palavras, um mecanismo é dito diferencialmente privado se a presença ou ausência de um registro no conjunto de entrada causa uma alteração mínima nas probabilidades dos resultados deste mecanismo.
 
-\subsection{Agregação}
+\paragraph{} Com relação ao fator $\varepsilon$, é possível encontrar seu valor variando entre 0.01 e 7 na literatura, ocasionalmente definido de forma arbitrária\cite{hsu2014differential}.
 
-\subsection{k-anonimização}
+\paragraph{} Outra vantagem desta classe de algoritmos é que pela própria definição, não é necessário saber quais informações adicionais um atacante possui para construir um modelo de segurança dos dados. Ou seja, há uma garantia de pior caso: Mesmo que um atacante possua acesso a todas os registros menos um único, não será possível inferir a informação que falta.
+
+\paragraph{} A definição também implica no fato de que pode-se compor um algoritmo com uma garantia de privacidade específica a partir da associação de algoritmos com garantia de privacidade menor e conhecida\cite{cummings2018differential}.
+
+\paragraph{} Desta forma, a privacidade diferencial fornece um arcabouço para avaliação quantitativa da garantia de privacidade provida por um algoritmo e pode ser usada como uma ferramenta de projeto.
+
+
+
+\subsection{Análise de Risco de Reidentificação}
+
+\paragraph{} TODO - Ver no arquivo de rascunhos - Goog DLP. Possivelmente mover para antes do tópico de privacidade diferencial
+
+\subsection{k-anonimato}
 
 \subsection{l-diversidade}
 
 \subsection{t-proximidade}
 
-\subsection{Avaliação}
-Aspectos possíveis de avaliação:
-    - eficiencia
-    - efetividade
-
-
+\subsection{Delta-presença}
+"calcula a probabilidade de um determinado usuário em uma população maior estar presente no conjunto de dados."
 
 
 

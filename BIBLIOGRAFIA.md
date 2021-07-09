@@ -71,3 +71,39 @@ http://vis.csail.mit.edu/classes/6.894/resources
 
 ## Systems Engineering
 https://www.ufried.com/blog/systems_thinking_and_quality/
+
+
+## Videos
+https://www.youtube.com/watch?v=puQvpyf0W-M - The Anonymisation Problem
+https://www.youtube.com/watch?v=gI0wk1CXlsQ - Differential Privacy - Simply Explained
+https://www.youtube.com/watch?v=vsA4w3itxA0 - Cynthia Dwork Turing Lecture
+
+# Fundamental Law of Information Recovery
+Overly accurate estimates of too many aggregate statistic destroys privacy
+
+--
+
+# Data genereation
+Differentially private synthetic data
+https://arxiv.org/pdf/2007.11934.pdf - PostGAN paper
+
+https://stackoverflow.com/questions/218060/random-gaussian-variables
+
+- Brazillian names: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ORH029
+
+- https://github.com/philipperemy/name-dataset
+
+
+# Diff Priv
+https://github.com/google/differential-privacy
+
+https://hdsr.mitpress.mit.edu/pub/dgg03vo6/release/2
+
+https://stackoverflow.com/questions/40694682/implementation-techinque-for-differential-privacy
+
+https://www.youtube.com/watch?v=nQJiEKaSbvY
+
+
+### IMPORTANTE  - GOOGLE CLOUD DATA LOSS PREVENTION
+https://cloud.google.com/dlp/docs/concepts?hl=pt-br
+https://cloud.google.com/dlp/docs/compute-risk-analysis?hl=pt-br
