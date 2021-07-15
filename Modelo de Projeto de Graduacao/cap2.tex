@@ -23,7 +23,7 @@ A privacidade, definida por Warren e Brandeis como ``direito à reserva de infor
 \paragraph{} De acordo com \cite{lgpd-evandro}, a Web 2.0 e o consequente crescimento da cultura participativa
 aonde os próprios usuários consumidores são também geradores de conteúdo implicou numa percepção de risco relacionado a privacidade cada vez maior.
 
-\paragraph{} O contexto tecnológico existente permite que instituições públicas e privadas façam uso profuso de dados pessoais para desempenhar suas atividades. Dentro deste contexto, as atividades realizadas por individuos são frequentemente rastreadas e utilizadas como insumo; Em alguns casos, sem seu devido conhecimento ou consentimento.
+\paragraph{} O contexto tecnológico existente permite  que instituições públicas e privadas façam uso profuso de dados pessoais para desempenhar suas atividades. Dentro deste contexto, as atividades realizadas por individuos são frequentemente rastreadas e utilizadas como insumo; Em alguns casos, sem seu devido conhecimento ou consentimento.
 
 \paragraph{} A percepção sobre a ampla disponibilidade de dados na Internet trouxe o tema às pautas dos debates políticos 
 mundiais, culminando na implementação de regulamentações para padronizar o tratamento adequado
@@ -80,7 +80,7 @@ requere-se que o controlador informe previamente o titular dos dados sobre mudan
 
 \paragraph{} De acordo com Plejic et Al., dados estruturados sempre são apresentados juntos aos metadados\cite{plejic2008}.
 
-\subsection{Tipos, Atributos e Registros}
+\subsection{Registros, Atributos e Tipos}
 
 \paragraph{} De maneira geral, um registro é uma unidade de dados estruturados. Por exemplo, num consultório médico, existem
 diversas fichas cadastrais dos pacientes, contendo nome, números de documentos, informações de contato e histórico de consultas. Essas fichas, quando implementadas em um meio eletrônico, seja através de um software que acessa um banco de dados ou mesmo de uma planilha, podem ser armazenadas sob a forma de linhas em uma tabela. Cada linha desta tal tabela hipotética é um registro e cada uma das colunas nesta linha é um atributo do registro.
@@ -99,22 +99,21 @@ diversas fichas cadastrais dos pacientes, contendo nome, números de documentos,
     \end{center}
 \end{table}
 
-\paragraph{} Os atributos, ou campos, dos registros armazenam a menor unidade de informação dentro de um conjunto de dados.
-Alguns destes campos permitem a associação entre diferentes registros ao possuírem valores únicos.
-Suponha que uma loja armazena o número de telefone 
-de seus clientes, assim como seu histórico de compras. 
-
-\paragraph{} Se o número de telefone é o mesmo que os clientes utilizaram para a ficha cadastral do consultório 
-médico mostrada anteriormente, considerando também um agente que possui acesso a ambos os dados, da loja e do 
-consultório médico, é possível realizar a junção dos dados dos dois registros. Assim, correlacionando as informações clínicas e de consumo dos clientes.
-
-\paragraph{} Além disso, cada atributo pertence a um tipo de dado. No exemplo da loja, o campo de idade é armazenado 
-como um tipo número inteiro não negativo, assim como o nome é armazenado como uma cadeia de caracteres.
-A nível de registro, é possível definir um tipo a partir do conjuntos de valores que este pode assumir \cite{cardelli1985types}. 
-Tipos impõem restrições nas operações que podem ser realizadas nos atributos, podem dar sentido semântico \cite{donahue1979semantics},
-e definem o formato de armazenamento da informação, garantindo sua consistência.
+\paragraph{} Os atributos, ou campos, dos registros armazenam a menor unidade de informação estruturada dentro de um conjunto de dados.
+Alguns destes campos podem permitir a associação entre registros em diferentes bancos de dados ao possuírem valores únicos, implicando em risco de privacidade.
 
 \paragraph{} A quantidade de atributos em um registro determina a sua dimensionalidade. Diz-se que o conjunto de dados é esparso quando dois registros aleatórios estão sempre distantes no espaço multidimensional formado por seus atributos.
+
+\paragraph{} Além disso, os atributos podem ser mapeados a tipos de dados. Tipos impõem restrições nas operações que podem ser realizadas nos atributos, e definem o formato de armazenamento da informação aos dados.
+
+\paragraph{} De acordo com Zhang\cite{zhang2019sato} e Donahue\cite{donahue1979semantics}, os tipos de dados para uma coluna de banco de dados podem ser atômicos ou semânticos. 
+
+\paragraph{} Tipos atômicos são aqueles que definem o formato de armazenamento do dado: Inteiros, cadeias de caracteres (string), variáveis booleanas são exemplos de tipos atômicos. Esses tipos não dependem da existência e do contexto do dado para sua definição e em alguns casos podem ser extraidos dos metadados do registro.
+
+\paragraph{} Tipos semânticos dependem do contexto e do conteúdo dos dados, podendo ser extraidos a partir do conteúdo com técnicas como procura em dicionário, expressões regulares, aprendizado profundo\cite{hulsebos2019sherlock} e reconhecimento de entidades nomeadas.
+
+\paragraph{} No exemplo anterior, a coluna nome pode ser representada em um banco de dados relacional pelo tipo atômico cadeia de caracteres (string) e seu tipo semântico pode ser inferido como nome completo ou pessoa.
+
 
 \subsection{Consulta}
 
@@ -169,6 +168,12 @@ substância pesquisada em certos grupos de indivíduos. Por outro lado, é funda
 
 \paragraph{} É trivial perceber que os atributos que levam a associação direta de um individuo com seus registros devem ser suprimidos do conjunto de dados. Esta intuição entretanto não leva em consideração a possibilidade de reidentificação de pessoas no conjunto anonimizado através do processamento de múltiplos registros de fontes diversas. 
 
+\paragraph{} Suponha que uma farmácia armazena o número de telefone 
+de seus clientes, assim como seu histórico de compras. 
+
+\paragraph{} Se o número de telefone é o mesmo que os clientes utilizaram para a ficha cadastral de um consultório médico, considerando um agente terceiro que possui acesso a ambos os bancos de dados, da farmácia e do 
+consultório médico, é possível realizar a junção dos dados dos dois registros correlacionando as informações clínicas e de consumo de medicamentos dos clientes. 
+
 \paragraph{} Em 2008 Arvind Narayanan e Vitaly Shmatikov demonstraram uma metologia robusta\cite{netflixDeanon}  que permitiu quebrar o anonimato de um conjunto de dados da Netflix. Os pesquisadores utilizaram as preferências individuais, recomendações e registro de transações do conjunto anonimizado e dados públicos disponíveis no site \textit{Internet Movie Database} (IMDB), revelando a identidade dos usuários, seu alinhamento político aparente, dentre outras informações pessoais.
 
 \paragraph{} Outro exemplo deste tipo de ataque foi demonstrado por Malin e Sweeney\cite{malin2004} em 2004 ao recuperar informações genéticas de pacientes a partir dos padrões de visitação e dados disponíveis no ambiente informacional da saúde.
@@ -181,12 +186,9 @@ substância pesquisada em certos grupos de indivíduos. Por outro lado, é funda
 
 \paragraph{} Neste escopo, algumas técnicas podem ser utilizadas para implementar a anonimização de registros, de acordo com as metas de compromisso entre utilidade e segurança das informações.
 
-\subsection{Pseudonimização}
-TODO
-
 \subsection{Resposta Aleatorizada}
 
-\paragraph{} A resposta aleatorizada é uma técnica proposta por Warner\cite{warner1965randomized} com o objetivo de resolver o seguinte problema: estimar qual parcela de pessoas em uma população possui um atributo específico sem que seja possível obter a informação para uma amostra individual. Em outras palavras, torna possível identificar a proporção de indivíduos com determinada caracteristica em um grupo de estudo, como por exemplo consumo de alcool e drogas ilícitas\cite{davila2010modelo}, sem permitir atribuição da caracteristica a um único indivíduo.
+\paragraph{} A resposta aleatorizada é uma técnica proposta por Warner\cite{warner1965randomized} com o objetivo de resolver o seguinte problema: estimar qual parcela de pessoas em uma população possui um atributo específico sem que seja possível obter a informação para uma amostra individual. Em outras palavras, torna possível identificar a proporção de indivíduos com determinada caracteristica em um grupo de estudo, como por exemplo consumo de alcool e drogas ilícitas\cite{davila2010modelo}, sem permitir atribuição da caracteristica a um único indivíduo e permite obter dados sobre comportamentos socialmente inaceitaveis sem expor a identidade do participante em uma pesquisa.
 
 \paragraph{} Para um atributo binário, esta técnica pode ser exemplificada a partir do seguinte algoritmo, como mostrado por Warner: Um pesquisador solicita que um volutário pesquisado jogue uma moeda sem que o pesquisador veja seu resultado. Caso o resultado deste arremesso seja cara, o volutário joga novamente a moeda e responde 0 ou 1 de acordo com o resultado da moeda. Caso o arremesso inicial seja coroa, o voluntário responde a resposta verdadeira.  Desta forma, não é possível saber se o voluntário pertence ou não a um grupo porém é possível extrair informações relativas ao grupo a partir da agregação dos resultados de vários voluentários.
 
@@ -204,7 +206,7 @@ TODO
 
 \paragraph{} Seja $X$ um banco de dados contendo n registros, cada um pertencente a um único indivíduo. 
 Seja $\mathbb{D}$ o conjunto formado por todos os possíveis bancos de dados. 
-Seja $\mathbb{Q}$ o conjunto formado por todas as possíveis consultas. Existe um algortimo $M$, referido como mecanismo, que tem como argumentos um banco de dados $X$ e opcionalmente uma consulta $q$.
+Seja $\mathbb{Q}$ o conjunto formado por todas as possíveis consultas. Existe um algortimo $M$, referido como mecanismo, que tem como argumentos um banco de dados $X$ e opcionalmente uma consulta $q$, que é uma função aplicada ao conjunto de dados.
 
 \paragraph{} Seja também a diferença simétrica entre dois bancos de dados $X$ e $X'$ denotadas por $X \ominus X'$, equivalente ao conjunto de registros que aparece em um banco ou outro mas não em ambos (análoga a operação lógica XOR). Considera-se neste caso. Finalmente, seja $\varepsilon$ o fator de privacidade. Então:
 
@@ -222,7 +224,7 @@ Seja $\mathbb{Q}$ o conjunto formado por todas as possíveis consultas. Existe u
 
 \paragraph{} A definição também implica no fato de que pode-se compor um algoritmo com uma garantia de privacidade específica a partir da associação de algoritmos com garantia de privacidade menor e conhecida\cite{cummings2018differential}.
 
-\paragraph{} Desta forma, a privacidade diferencial fornece um arcabouço para avaliação quantitativa da garantia de privacidade provida por um algoritmo e pode ser usada como uma ferramenta de projeto.
+\paragraph{} Desta forma, a privacidade diferencial fornece um arcabouço para avaliação quantitativa da garantia de privacidade provida por um algoritmo e pode ser usada como uma ferramenta de projeto\cite{mcsherry2007mechanism}.
 
 
 
@@ -238,9 +240,6 @@ Seja $\mathbb{Q}$ o conjunto formado por todas as possíveis consultas. Existe u
 
 \subsection{Delta-presença}
 "calcula a probabilidade de um determinado usuário em uma população maior estar presente no conjunto de dados."
-
-
-
 
 
 % \section{Figuras}
