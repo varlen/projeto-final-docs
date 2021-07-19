@@ -157,22 +157,24 @@ De maneira geral, um processo de ETL realiza um mapeamento entre dois bancos de 
 
 \subsection{Anonimização}
 
-\paragraph{} Por muitas vezes atributos em registros contém dados pessoais como CPF, nome, endereço e telefone. É fácil perceber que estes permitem atribuir um registro a um individuo especifico diretamente.
+\paragraph{} Por muitas vezes, atributos em registros contém dados pessoais como CPF, nome e telefone. Estes permitem atribuir um registro a um individuo específico diretamente. 
 
 \paragraph{} Essa atribuição, entretanto, é por muitas vezes indesejada. Tomando como exemplo a divulgação do resultado de testes para medicamentos, é importante para a sociedade saber caracteristicas que possam determinar o comportamento da 
 substância pesquisada em certos grupos de indivíduos. Por outro lado, é fundamental para os próprios indivíduos que seus dados pessoais não estejam presentes nos resultados públicos destes testes. 
 
-\paragraph{} Para garantir que estas duas condições sejam satisfeitas, é possível implementar um processo de anonimização sobre o conjunto de dados trabalhados. Este consiste em um processamento irreversível\cite{dias2016multilingual} sobre o conjunto de dados através de substuições, agregações e supressões de registros e seus atributos com o intuito final de gerar um novo conjunto de dados cuja possibilidade de divulgação não implica em um risco para os individuos e instituições envolvidos. 
+\paragraph{} Para garantir que estas duas condições sejam satisfeitas, é possível implementar um processo de anonimização sobre o conjunto de dados trabalhados. Este consiste em um processamento irreversível\cite{dias2016multilingual} sobre o conjunto de dados através de substuições, agregações e supressões de registros e seus atributos com o intuito final de gerar um novo conjunto de dados cuja possibilidade de divulgação deve mitigar o risco para os individuos e instituições envolvidos. 
 
-\subsection{Reidentificação}
+\subsection{Reidentificação, Identificadores e Semi-Identificadores}
 
-\paragraph{} É trivial perceber que os atributos que levam a associação direta de um individuo com seus registros devem ser suprimidos do conjunto de dados. Esta intuição entretanto não leva em consideração a possibilidade de reidentificação de pessoas no conjunto anonimizado através do processamento de múltiplos registros de fontes diversas. 
+\paragraph{} Intuitivamente, os atributos que levam a associação direta de um individuo com seus registros devem ser suprimidos do conjunto de dados. Esta intuição entretanto não leva em consideração a possibilidade de reidentificação de pessoas no conjunto anonimizado através do processamento de múltiplos registros de fontes diversas. 
 
 \paragraph{} Suponha que uma farmácia armazena o número de telefone 
 de seus clientes, assim como seu histórico de compras. 
 
 \paragraph{} Se o número de telefone é o mesmo que os clientes utilizaram para a ficha cadastral de um consultório médico, considerando um agente terceiro que possui acesso a ambos os bancos de dados, da farmácia e do 
-consultório médico, é possível realizar a junção dos dados dos dois registros correlacionando as informações clínicas e de consumo de medicamentos dos clientes. 
+consultório médico, é possível realizar a junção dos dados dos dois registros correlacionando as informações clínicas e de consumo de medicamentos dos clientes.
+
+\paragraph{} Atributos que podem ser utilizados para identificação exclusiva de um indivíduo são chamados Identificadores. Já  atributos que podem ser utilizados para identificar um indivíduo quando cruzados com outros dados são chamados Quase Identificadores.
 
 \paragraph{} Em 2008 Arvind Narayanan e Vitaly Shmatikov demonstraram uma metologia robusta\cite{netflixDeanon}  que permitiu quebrar o anonimato de um conjunto de dados da Netflix. Os pesquisadores utilizaram as preferências individuais, recomendações e registro de transações do conjunto anonimizado e dados públicos disponíveis no site \textit{Internet Movie Database} (IMDB), revelando a identidade dos usuários, seu alinhamento político aparente, dentre outras informações pessoais.
 
@@ -227,16 +229,27 @@ Seja $\mathbb{Q}$ o conjunto formado por todas as possíveis consultas. Existe u
 \paragraph{} Desta forma, a privacidade diferencial fornece um arcabouço para avaliação quantitativa da garantia de privacidade provida por um algoritmo e pode ser usada como uma ferramenta de projeto\cite{mcsherry2007mechanism}.
 
 
-
 \subsection{Análise de Risco de Reidentificação}
 
-\paragraph{} TODO - Ver no arquivo de rascunhos - Goog DLP. Possivelmente mover para antes do tópico de privacidade diferencial
+\paragraph{} A análise de risco de reidentificação é o processamento realizado sobre um conjunto de dados para inferir quais atributos admitem um risco de privacidade e podem ser utilizados para recuperar informações sobre um indivíduo neste conjunto.
 
-\subsection{k-anonimato}
+\subsection{$k$-anonimato}
+
+\paragraph{} \textit{k-anonimato} é um critério de privacidade para um conjunto de dados definido por Sweeney\cite{sweeney2002kanon}. 
+
+\paragraph{} Um conjunto de dados satisfaz $k$-anonimato para $k > 1$ se para cada combinação de quase indentificadores, existirem ao menos $k$ registros\cite{domingo2008critique}.
+
+\paragraph{} É possível encontrar a implementação deste critério de privacidade como a generalização de um atributo específico, por exemplo, substituindo o endereço completo pelo bairro ou a idade pela faixa etária.
+
+\paragraph{} Nestes casos, observa-se que a adequação ao critério de privacidade compromete o tipo semântico e possívelmente o tipo atômico do dado.
 
 \subsection{l-diversidade}
 
+\paragraph{}
+
 \subsection{t-proximidade}
+
+\paragraph{}
 
 \subsection{Delta-presença}
 "calcula a probabilidade de um determinado usuário em uma população maior estar presente no conjunto de dados."
