@@ -1,15 +1,13 @@
 \chapter{Metodologia}
 \label{cap3}
 
-\paragraph{} Este capítulo apresenta o resultado da prospecção das ferramentas de código aberto existentes com o intuito de entender as capacidades fornecidas, determinar os requisitos necessários a uma nova solução e investigar possíveis componentes a serem reutilizados.
+\paragraph{} Este capítulo apresenta o resultado da prospecção das ferramentas de código aberto existentes com o intuito de entender as capacidades fornecidas, determinar os requisitos necessários a uma nova solução além de investigar possíveis componentes a serem reutilizados na solução final.
 
 \section{Softwares de Anonimização}
 
-\paragraph{}
-Para descoberta de ferramentas de anonimização neste trabalho, foram utilizados projetos de código-aberto disponíveis em repositórios públicos no GitHub. 
+\paragraph{} Para descoberta de ferramentas de anonimização neste trabalho, foram utilizados projetos de código-aberto disponíveis em repositórios públicos no GitHub. 
 
-\paragraph{}
-Especificamente, foram consideradas as métricas de stars e forks dos repositórios como medida de popularidade para seleção de 4 projetos relativos a anonimização de dados. Todos os projetos apresentavam novas modificações no código-fonte em Março de 2020, indicando que são mantidos pelas comunidade. Buscou-se inferir os casos de uso, funcionalidades, usabilidade e tecnologias utilizadas a partir da documentação dos projetos. Considerou-se a primeira linha dos arquivos README dos repositórios como nome do projeto.
+\paragraph{} Especificamente, foram consideradas as métricas de stars e forks dos repositórios como medida de popularidade para seleção de 4 projetos relativos a anonimização de dados. Todos os projetos apresentavam novas modificações no código-fonte em Março de 2020, indicando que são mantidos pelas comunidade. Buscou-se inferir os casos de uso, funcionalidades, usabilidade e tecnologias utilizadas a partir da documentação dos projetos. Considerou-se a primeira linha dos arquivos README dos repositórios como nome do projeto.
 
 \subsection{Anonymizer}
 
@@ -89,6 +87,22 @@ estão inclusas nas imagens utilizadas para montagem, efetivamente facilitando a
 
 \section{Extração de Tipos Semânticos}
 
+\paragraph{} A extração de tipos semânticos é o processo que possibilita extrair o significado de cada coluna em um conjunto de registros.
+Nesta sessão, são mostradas técnicas e softwares que permitem realizar esta tarefa.
+
+\subsection{Busca em Dicionário}
+
+\paragraph{} 
+
+\subsection{Expressões Regulares}
+
+\paragraph{}
+
 \subsection{SATO}
 
-TODO \cite{zhang2019sato}
+\paragraph{} SATO\cite{zhang2019sato} é um modelo de aprendizado de máquina que incorpora os contextos das tabelas para realizar predição de tipos semanticos.
+
+\paragraph{} A abordagem apresentada por esta solução, além de permitir a predição a partir de uma única coluna, também permite utilizar colunas vizinhas como contexto local ou outras tabelas como contexto global, melhorando a acurácia da predição.
+
+\paragraph{} A implementação do SATO toma como base o Sherlock\cite{hulsebos2019sherlock}, que utiliza aprendizado profundo para detecção de tipos semanticos, e a expande para incluir a influência do contexto.
+
