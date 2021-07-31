@@ -1,8 +1,59 @@
 \chapter{Implementação}
 \label{cap4}
 
-\section{Requisitos}
+\paragraph{} Este capítulo dedica-se a aprofundar a discussão sobre a solução criada, suas premissas, restrições e motivações. 
 
-\section{Arquitetura Proposta}
+\section{Requisitos e Limitações}
+
+\paragraph{} A principal premissa a ser levada em consideração para implementação é que a saída dos dados deve manter a mesma estrutura dos dados da entrada. Isso significa que as tabelas, as colunas, seus tipos e suas restrições relacionais, como chaves primárias e estrangeiras, serão as mesmas do banco de dados de entrada.
+
+\paragraph{} Isso reduz a gama de técnicas de anonimização passiveis de utilização neste trabalho, pois algumas destas dependem de operações que alteram os tipos semânticos dos dados. Por exemplo, a já apresentada anteriormente, substituição de uma idade específica (27 anos) por uma faixa etária (20-30 anos). 
+
+\paragraph{} Para colunas cujos valores são numéricos, este trabalho abre mão da fidelidade estatística por preferência a simplicidade de implementação. Colunas numéricas serão anonimizadas a partir da substituição por uma distribuição uniforme.
+
+\paragraph{} Deste modo, a ferramenta de anonimização apresentada neste trabalho visa prioritariamente atingir simplicidade de uso em detrimento de funcionalidades mais avançadas.
+
+\paragraph{} Ainda com intuito de simplicidade, ao usar componentes cuja base é aprendizado de máquina, este trabalho se restringe a utilizar modelos prontos ao invés de treinar seus próprios modelos.
+
+\paragraph{} Funcionalidades estas que podem ser incorporadas ao software futuramente, conforme a necessidade do usuário. Com esse intuito, a solução foi desenvolvida como software livre, de código aberto e disponível na plataforma GitHub.
 
 \section{Desenvolvimento}
+
+\paragraph{} O sistema implementado é capaz de gerar um banco de dados relacional anonimizado a partir de um banco de dados original, a partir da substituição dos dados reais por dados gerados a partir dos tipos e estrutura originais.
+
+\paragraph{} A escolha de tecnologias para implementação tomou como critério a existência de bibliotecas para realizar as manipulações de dados previstas, facilidade de reuso, disponibilidade de documentação pública acessível e também a familiaridade do autor.
+
+\paragraph{} Inicialmente, este trabalho utilizaria Python como linguagem principal tendo a biblioteca SQLAlchemy como provedor de acesso ao banco de dados. Porém, no decorrer do processo de implementação, foi percebido que seria melhor restringir a camada de acesso ao banco de dados a um único sistema de banco de dados relacional mantendo em mente a expansibilidade futura, evitando acoplamentos desnecessários no código. 
+
+\paragraph{} Neste âmbito, restringiu-se a compatibilidade de sistemas de bancos de dados ao Postgres. A principal linguagem de programação utilizada foi C$\#$, eventualmente utilizando Python em componentes secundários, como o analisador de tipos semânticos.
+
+\section{Componentes} 
+
+\paragraph{} Os componentes representam as unidades lógicas do software e funcionam como uma abstração de alto nível das partes do sistema. Eles realizam operações encadeadas dentro do fluxo de transformação dos dados, facilitando o entendimento da implementação.
+
+\subsection{Analisador de Banco de Dados}
+
+\paragraph{} O analisador de banco de dados é o componente responsável pelo inicio do fluxo de processamento da aplicação, obtendo as informações sobre o banco de dados e seus metadados a serem armazenadas em uma estrutura de dados comum.
+
+\paragraph{} Essa estrutura de dados pode ser serializada como um arquivo JSON para que o fluxo de processamento possa reutilizar o resultado de uma execução prévia deste componente.
+
+\paragraph{} O analisador de banco de dados inclui o analisador de estrutura e o analisador de tipos semânticos.
+
+\subsubsection{Analisador de Estrutura}
+
+\paragraph{} É o subcomponente do analisador de banco de dados responsável por capturar o desenho do banco de dados original, trazendo para o fluxo de dados suas colunas com os respectivos tipos atômicos e tabelas, além de amostras e estatisticas dos dados, a partir da realização das consultas necessarias para obtenção destas informações.
+
+\subsubsection{Analisador de Tipos Semânticos}
+
+\paragraph{} O analisador de tipos semânticos é o componente responsável por obter o significado de uma coluna a partir de suas amostras e é aplicado em colunas textuais para permitir a futura geração de dados semanticamente coerentes com o banco de dados original.
+
+\paragraph{} Este processo pode ser feito a partir das tecnicas previamente apresentadas como busca em dicionário e expressão regulares. Porém, estas tecnicas apresentam limitações que as tornam inconvenientes para obtenção de alguns tipos semânticos importantes como endereço, etc.
+
+\paragraph{} Para contornar este problema, o analisador de tipos semânticos pode se comunicar com o SATO, como uma dependência externa. Desta forma, é possível obter o tipo semântico de colunas que não poderiam ser processadas anteriormente, com outras técnicas.
+
+\subsection{Gerador de Dados}
+
+\paragraph{} O Gerador de dados é o componente responsável pela geração da carga de saída do fluxo de processamento. 
+
+\paragraph{} Este toma como entrada as especificações geradas pelos componentes anteriores e utiliza como parâmetro para geração aleatória de novos dados, a serem armazenados em um novo banco de dados.
+

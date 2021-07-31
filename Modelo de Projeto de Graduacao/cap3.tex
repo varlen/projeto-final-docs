@@ -7,7 +7,7 @@
 
 \paragraph{} Para descoberta de ferramentas de anonimização neste trabalho, foram utilizados projetos de código-aberto disponíveis em repositórios públicos no GitHub. 
 
-\paragraph{} Especificamente, foram consideradas as métricas de stars e forks dos repositórios como medida de popularidade para seleção de 4 projetos relativos a anonimização de dados. Todos os projetos apresentavam novas modificações no código-fonte em Março de 2020, indicando que são mantidos pelas comunidade. Buscou-se inferir os casos de uso, funcionalidades, usabilidade e tecnologias utilizadas a partir da documentação dos projetos. Considerou-se a primeira linha dos arquivos README dos repositórios como nome do projeto.
+\paragraph{} Especificamente, foram consideradas as métricas de stars e forks dos repositórios como medida de popularidade para seleção de 4 projetos relativos a anonimização de dados. Todos os projetos apresentavam novas modificações no código-fonte em Março de 2020, indicando que são mantidos pelas comunidade. Buscou-se inferir os casos de uso, funcionalidades, usabilidade e tecnologias utilizadas a partir da documentação dos projetos. Foi considerada a primeira linha dos arquivos README dos repositórios como nome do projeto.
 
 \subsection{Anonymizer}
 
@@ -79,10 +79,10 @@ os modelos para lingua inglesa são suportados.\cite{presidio-issue303} Dentre a
 adequado com suporte a lingua portuguesa. Este modelo está disponível no site da biblioteca\cite{spacy}, assim como modelos para Alemão, Francês, Espanhol, dentre outros idiomas.
 
 \paragraph{} Os principais serviços realizam a Análise, Anonimização, Anonimização de Imagens e Reconhecimento Óptico de Caracteres. 
-Além disso, também existem serviços únicos para API e agendamento, além do acesso de leitura e escrita as fontes de dados. Esta arquitetura fornece resiliência para
-as comunicações entre diferentes serviços através de \textit{circuit-breaking}, tentativas, balanceamento de carga, dentre outras técnicas. 
-O uso de containers diminui a ocorrencia de problemas no gerenciamento de dependências\cite{merkel2014docker} uma vez que estas e suas respectivas configurações
-estão inclusas nas imagens utilizadas para montagem, efetivamente facilitando a implementação.
+Além disso, também existem serviços únicos para API e agendamento, além do acesso de leitura e escrita as fontes de dados. 
+
+\paragraph{} Esta arquitetura fornece resiliência entre diferentes serviços através de \textit{circuit-breaking}, tentativas, balanceamento de carga, dentre outras técnicas. 
+O uso de containers diminui a ocorrencia de problemas no gerenciamento de dependências\cite{merkel2014docker} uma vez que estas e suas respectivas configurações estarão inclusas nas imagens utilizadas para montagem, reduzindo o esforço de implementação.
 
 
 \section{Extração de Tipos Semânticos}
@@ -92,7 +92,11 @@ Nesta sessão, são mostradas técnicas e softwares que permitem realizar esta t
 
 \subsection{Busca em Dicionário}
 
-\paragraph{} 
+\paragraph{} A busca em dicionário para extração de tipo semântico consiste em contar as ocorrências de palavras de vários conjuntos em uma coluna. 
+
+\paragraph{} Cada conjunto é formado pelos possíveis valores de cada tipo semântico a ser detectado por essa técnica. Após a comparação, observa-se qual dos conjuntos possui a maior quantidade de palavras na coluna trabalhada. 
+
+\paragraph{} Também é possível estabelecer um limiar mínimo aceitável na contagem de palavras do conjunto na coluna no qual para valores menores que este, o tipo semântico da coluna é considerado não detectado, sendo necessário um processamento mais adequado ao conjunto de dados da coluna.
 
 \subsection{Expressões Regulares}
 
@@ -100,13 +104,14 @@ Nesta sessão, são mostradas técnicas e softwares que permitem realizar esta t
 
 \paragraph{} É possível utilizar expressões regulares a partir de bibliotecas inclusas em diversas linguagens de programação como Python, C\#, Perl, dentre outras.
 
-\paragraph{} Tipos semânticos que seguem um padrão único podem ser detectados a partir de expressões regulares.
+\paragraph{} Tipos semânticos que seguem um padrão único, como por exemplo um número de CPF, podem ser detectados a partir de expressões regulares.
  
 \subsection{SATO}
 
-\paragraph{} SATO\cite{zhang2019sato} é um modelo de aprendizado de máquina que incorpora os contextos das tabelas para realizar predição de tipos semanticos.
+\paragraph{} SATO\cite{zhang2019sato} é um modelo de aprendizado de máquina que realiza predição de tipos semanticos.
 
 \paragraph{} A abordagem apresentada por esta solução, além de permitir a predição a partir de uma única coluna, também permite utilizar colunas vizinhas como contexto local ou outras tabelas como contexto global, melhorando a acurácia da predição.
 
-\paragraph{} A implementação do SATO toma como base o Sherlock\cite{hulsebos2019sherlock}, que utiliza aprendizado profundo para detecção de tipos semanticos, e a expande para incluir a influência do contexto.
+\paragraph{} A implementação do SATO foi criada a partir do Sherlock\cite{hulsebos2019sherlock}, que utiliza aprendizado profundo para detecção de tipos semanticos, e a expande para incluir a influência do contexto.
+
 
