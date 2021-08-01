@@ -233,6 +233,10 @@ Seja $\mathbb{Q}$ o conjunto formado por todas as possíveis consultas. Existe u
 
 \paragraph{} A análise de risco de reidentificação é o processamento realizado sobre um conjunto de dados para inferir quais atributos admitem um risco de privacidade e podem ser utilizados para recuperar informações sobre um indivíduo neste conjunto.
 
+\paragraph{} Em contraste a algoritmos de privacidade diferencial, que podem ser aplicados diretamente na coleta de dados em alguns casos, os critérios de privacidade utilizados para análise de risco geralmente consideram um conjunto de dados pré-existente. 
+
+\paragraph{} Assim, algoritmos que almejam atingir esses critérios geralmente operam sobre a agregação de valores, sendo especialmente úteis para o lançamento de dados com privacidade protegida como dados médicos e resultados de pesquisa.
+
 \subsection{$k$-anonimato}
 
 \paragraph{} \textit{k-anonimato} é um critério de privacidade para um conjunto de dados definido por Sweeney\cite{sweeney2002kanon}. 
@@ -245,18 +249,25 @@ Seja $\mathbb{Q}$ o conjunto formado por todas as possíveis consultas. Existe u
 
 \subsection{l-diversidade}
 
-\paragraph{} A l-diversidade\cite{ldiversity} é um critério de privacidade que visa mitigar dois problemas encontrados no k-anonimato: a possibilidade de um atacante descobrir o valor de atributos que não possuem uma diversidade significativa e a possibilidade de um atacante possuir conhecimento agregável externo ao conjunto de dados atacado.
+\paragraph{} A $l$-diversidade\cite{ldiversity} é um critério de privacidade que visa mitigar dois problemas encontrados no $k$-anonimato: a possibilidade de um atacante descobrir o valor de atributos que não possuem uma diversidade significativa e a possibilidade de um atacante possuir conhecimento agregável externo ao conjunto de dados atacado.
 
-\paragraph{} Para satisfazer l-diversidade, todos os conjuntos de quase identificadores devem possuir valores diversos para seus atributos sensíveis.
+\paragraph{} Para satisfazer $l$-diversidade, todos as combinações de quase identificadores devem possuir cada uma $l$ valores diversos para seus atributos sensíveis.
 
 \paragraph{} Como uma extensão do k-anonimato, l-diversidade também pode implicar na generalização de atributos e na disrupção dos tipos.
 
-\subsection{t-proximidade}
+\paragraph{} A l-diversidade possui duas vulnerabilidades\cite{tproximity} que podem ser exploradas por um atacante para obter informações privadas: Quando a distribuição geral possui uma distorção(\textit{skewness}) ou quando a diversidade se dá através de informações semanticamente equivalentes, por exemplo, sinônimos da mesma palavra como valor de atributo. 
 
-\paragraph{}
+\subsection{($n$,$t$)-proximidade}
 
-\subsection{Delta-presença}
-"calcula a probabilidade de um determinado usuário em uma população maior estar presente no conjunto de dados."
+\paragraph{} A ($n$,$t$)-proximidade\cite{tproximity} é um critério de privacidade criado com o intuito de resolver as falhas da $l$-diversidade e do $k$-anonimato.
+
+\paragraph{} Sejam classes de equivalência neste contexto, quaisquer grupos de registros que incluam uma combinação única em si de multiplos quase identificadores. Para satisfazer este critério de privacidade, a distribuição de qualquer classe de equivalência deve ser próxima a distribuição de uma classe de equivalência suficientemente grande.
+
+\paragraph{} Quantitativamente, a distância entre as distribuições não deve ultrapassar o limiar $t$ enquanto cada classe de equivalência deve conter ao menos $n$ registros.
+
+\subsection{$\delta$-presença}
+
+\paragraph{} "calcula a probabilidade de um determinado usuário em uma população maior estar presente no conjunto de dados."
 
 
 % \section{Figuras}
