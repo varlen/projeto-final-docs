@@ -13,21 +13,22 @@
 
 \paragraph{} Deste modo, a ferramenta de anonimização apresentada neste trabalho visa prioritariamente atingir simplicidade de uso em detrimento de funcionalidades mais avançadas.
 
-\paragraph{} Ainda com intuito de simplicidade, ao usar componentes cuja base é aprendizado de máquina, este trabalho se restringe a utilizar modelos prontos ao invés de treinar seus próprios modelos.
+\paragraph{} Ainda com intuito de simplificar a implementação, ao usar componentes cuja base é aprendizado de máquina, este trabalho se restringe a utilizar modelos prontos ao invés de treinar seus próprios modelos.
 
-\paragraph{} Funcionalidades estas que podem ser incorporadas ao software futuramente, conforme a necessidade do usuário. Com esse intuito, a solução foi desenvolvida como software livre, de código aberto e disponível na plataforma GitHub.
+\paragraph{} Com a intenção de criar uma solução extensível e reutilizável, optou-se por desenvolvimento dentro das premissas adequadas para software livre, de código aberto e disponibilizado na plataforma GitHub.
 
-\section{Desenvolvimento}
+\section{Tecnologias Utilizadas}
 
 \paragraph{} O sistema implementado é capaz de gerar um banco de dados relacional anonimizado a partir de um banco de dados original, a partir da substituição dos dados reais por dados gerados a partir dos tipos e estrutura originais.
 
 \paragraph{} A escolha de tecnologias para implementação tomou como critério a existência de bibliotecas para realizar as manipulações de dados previstas, facilidade de reuso, disponibilidade de documentação pública acessível e também a familiaridade do autor.
 
-\paragraph{} Inicialmente, este trabalho utilizaria Python como linguagem principal tendo a biblioteca SQLAlchemy como provedor de acesso ao banco de dados. Porém, no decorrer do processo de implementação, foi percebido que seria melhor restringir a camada de acesso ao banco de dados a um único sistema de banco de dados relacional mantendo em mente a expansibilidade futura, evitando acoplamentos desnecessários no código. 
+\paragraph{} Inicialmente, este trabalho utilizou Python como linguagem principal tendo a biblioteca SQLAlchemy como provedor de acesso ao banco de dados para compatibilidade com multiplos Sistemas de Gerenciamento de Banco de Dados. No decorrer do processo de desenvolvimento, optou-se por restringir a implementação existente em um único sistema de banco de dados relacional, especificamente Postgres.
 
-\paragraph{} Neste âmbito, restringiu-se a compatibilidade de sistemas de bancos de dados ao Postgres. A principal linguagem de programação utilizada foi C$\#$, eventualmente utilizando Python em componentes secundários, como o analisador de tipos semânticos.
+\paragraph{} Visando-se a expansibilidade futura, o código foi implementado de forma a definir pontos de extensão que permitem à um usuário interessado adicionar compatibilidade com outros SGBDs.
 
-\section{Componentes} 
+
+\section{Componentes}
 
 \paragraph{} Os componentes representam as unidades lógicas do software e funcionam como uma abstração de alto nível das partes do sistema. Eles realizam operações encadeadas dentro do fluxo de transformação dos dados, facilitando o entendimento da implementação.
 
@@ -41,19 +42,23 @@
 
 \subsubsection{Analisador de Estrutura}
 
-\paragraph{} É o subcomponente do analisador de banco de dados responsável por capturar o desenho do banco de dados original, trazendo para o fluxo de dados suas colunas com os respectivos tipos atômicos e tabelas, além de amostras e estatisticas dos dados, a partir da realização das consultas necessarias para obtenção destas informações.
+\paragraph{} É o subcomponente do analisador de banco de dados responsável por capturar o desenho do banco de dados original, trazendo para o fluxo de dados suas colunas com os respectivos tipos atômicos e tabelas, além de amostras e estatísticas dos dados, a partir da realização das consultas necessarias para obtenção destas informações.
 
 \subsubsection{Analisador de Tipos Semânticos}
 
-\paragraph{} O analisador de tipos semânticos é o componente responsável por obter o significado de uma coluna a partir de suas amostras e é aplicado em colunas textuais para permitir a futura geração de dados semanticamente coerentes com o banco de dados original.
+\paragraph{} O analisador de tipos semânticos é o componente responsável por obter o significado de uma coluna dentro do contexto das informações presentes no banco de dados a partir de suas amostras e é aplicado em colunas textuais para permitir a futura geração de dados semanticamente coerentes com o banco de dados original.
 
 \paragraph{} Este processo pode ser feito a partir das tecnicas previamente apresentadas como busca em dicionário e expressão regulares. Porém, estas tecnicas apresentam limitações que as tornam inconvenientes para obtenção de alguns tipos semânticos importantes como endereço, etc.
 
-\paragraph{} Para contornar este problema, o analisador de tipos semânticos pode se comunicar com o SATO, como uma dependência externa através de chamadas HTTP. Desta forma, é possível obter o tipo semântico de colunas que não poderiam ser processadas anteriormente, com outras técnicas.
+\paragraph{} Como uma tentativa de contornar este problema e melhorar a inferência de tipos semânticos, este componente utiliza uma solução de aprendizado de máquina externa. 
+
+\paragraph{} Esta solução, chamada SATO\cite{zhang2019sato}, é integrada à solução final a partir de requisições HTTP. Utilizou-se um modelo pré-treinado, incluido no repositório do SATO chamado Type78.
+
+\paragraph{} Desta forma, é possível obter o tipo semântico de colunas que não poderiam ser processadas apenas com técnicas deterministicas.
 
 \subsection{Gerador de Dados}
 
 \paragraph{} O Gerador de dados é o componente responsável pela geração da carga de saída do fluxo de processamento. 
 
-\paragraph{} Este toma como entrada as especificações geradas pelos componentes anteriores e utiliza como parâmetro para geração aleatória de novos dados, a serem armazenados em um novo banco de dados.
+\paragraph{} Este toma como entrada as especificações geradas pelos componentes anteriores e utiliza como parâmetro para geração de novos dados, a serem armazenados em um novo banco de dados.
 
