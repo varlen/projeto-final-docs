@@ -107,3 +107,12 @@ https://www.youtube.com/watch?v=nQJiEKaSbvY
 ### IMPORTANTE  - GOOGLE CLOUD DATA LOSS PREVENTION
 https://cloud.google.com/dlp/docs/concepts?hl=pt-br
 https://cloud.google.com/dlp/docs/compute-risk-analysis?hl=pt-br
+
+https://www.cis.upenn.edu/~aaroth/courses/gametheoryprivacyS14.html
+
+https://github.com/megagonlabs/sato
+
+https://cloud.google.com/dlp/docs/infotypes-reference?hl=pt-br
+
+
+### g

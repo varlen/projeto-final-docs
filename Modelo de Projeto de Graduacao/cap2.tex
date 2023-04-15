@@ -2,8 +2,8 @@
 \label{cap2}
 
 \paragraph{} O presente capítulo propõe-se a introduzir o leitor ao entendimento existente sobre o conceito de privacidade, principalmente no que contempla a área de Tecnologia da Informação, o respectivo impacto social e a consequente legislação, com foco nos pontos de interesse deste trabalho,
-principalmente com relação ao tratamento de informações pessoais. 
-\paragraph{} Inicia-se pelo ponto de vista mais amplo e filosófico da relação entre o indivíduos e privacidade, de onde se derivam suas consequencias sociotécnicas.
+principalmente com relação ao tratamento de informações pessoais.
+\paragraph{} Inicia-se pelo ponto de vista mais amplo e filosófico da relação entre o indivíduos e privacidade, de onde se derivam suas consequências sociotécnicas.
 \paragraph{} A parte final do capítulo dedica-se a eventual familiarização do leitor ao domínio de implementação deste trabalho, apresentando definições técnicas relativas a armazenamento de dados.
 
 \section{Privacidade}
@@ -41,7 +41,7 @@ e a globalização impuseram novos desafios para a proteção de dados pessoais\
 
 \paragraph{} A lei define o detalhamento dos direitos e deveres de quem se utiliza do processamento de dados pessoais, assim como mecanismos para fiscalização do respeito as regras e sanções aplicáveis nos países membros. A proteção forncida por este dispositivo legal é aplicável a individuos de qualquer nacionalidade ou residência.
 
-\paragraph{} A GDPR gera a necessidade de adaptação também fora da Europa, pois estabelece que o processamento de dados oriundos de inviduos pertencentes a União Europeia por instituições não pertencentes para o oferencimento de bens e serviços ou rastreamento também estará sujeito a este conjunto de regras. 
+\paragraph{} A GDPR gera a necessidade de adaptação também fora da Europa, pois estabelece que o processamento de dados oriundos de inviduos pertencentes a União Europeia por instituições não pertencentes para o oferencimento de bens e serviços ou rastreamento também estará sujeito a este conjunto de regras.
 
 \paragraph{} É estabelecido que os provedores de serviços devem coletar o consentimento dos usuários sobre o uso de seus dados para diferentes escopos, informando o usuário sobre estes de maneira clara, permitindo a seleção parcial de escopos, sem a utilização de \textit{dark patterns}, como caixas de seleção pré-marcadas ou impedimento da utilização do serviço. O consentimento deve ser fornecido livremente pelo usuário, no sentido em que, não se deve obrigar o usuário a fornecer consenso para um escopo se a ação que o usuário deseja realizar pertence ou depende de um outro escopo. Informações textuais sobre a utilização dos dados coletados devem estar escritas de maneira clara, sem ambiguidades e facilmente acessíveis.
 
@@ -50,14 +50,13 @@ e a globalização impuseram novos desafios para a proteção de dados pessoais\
 
 \subsection{A Lei Geral de Proteção de Dados brasileira}
 
-\paragraph{} No Brasil, a lei número 13.709/2018\cite{br-13709-2018} é a responsável pelas diretivas para tratamento de dados pessoais. O texto possui múltiplos tópicos similares a lei europeia. No momento da escrita deste trabalho, a lei começará a vigorar em maio de 2021. 
+\paragraph{} No Brasil, a lei número 13.709/2018\cite{br-13709-2018} é a responsável pelas diretivas para tratamento de dados pessoais. O texto possui múltiplos tópicos similares a lei europeia. No momento da escrita deste trabalho, a lei começará a vigorar em maio de 2021.
 
 \paragraph{} A lei considera como dados pessoais informações relacionadas a pessoa natural identificada ou identificável e tratamento como qualquer operação realizada com dados pessoais. Além disso, definem-se agentes de tratamento de dados - Controlador: aquele a quem compete as decisões referentes ao tratamentos de dados pessoais; Operador: Aquele que realiza o tratamento de dados pessoais em nome do controlador. Ambas entidades podendo ser pessoa natural ou jurídica, de direito público ou privado. Titular é a pessoa natural cujos dados pessoais são objeto de tratamento.
 
 \paragraph{} Assim como a GDPR, a lei brasileira é destinada a proteção de individuos no território nacional independentemente da origem e localização da instituição que processa os dados.
 
-\paragraph{} Com relação as obrigações a serem cumpridas pelos agentes de tratamento de dados, a lei brasileira institui a necessidade de coleta de consentimento revogável e fornecimento de acesso às informações de tratamento dos dados, incluindo a finalidade, forma, duração e identificações. Também
-requere-se que o controlador informe previamente o titular dos dados sobre mudanças na sua finalidade de uso. 
+\paragraph{} Com relação as obrigações a serem cumpridas pelos agentes de tratamento de dados, a lei brasileira institui a necessidade de coleta de consentimento revogável e fornecimento de acesso às informações de tratamento dos dados, incluindo a finalidade, forma, duração e identificações. Também requere-se que o controlador informe previamente o titular dos dados sobre mudanças na sua finalidade de uso.
 
 \paragraph{} A lei nacional cria a Agência Nacional de Proteção de Dados e o Conselho Nacional de Proteção de Dados Pessoais e Privacidade, órgãos governamentais responsaveis pela fiscalização e aplicação das sanções definidas no texto da lei.
 
@@ -66,7 +65,7 @@ requere-se que o controlador informe previamente o titular dos dados sobre mudan
 
 \section{Bases de Dados}
 
-\paragraph{} Mostram-se a seguir, conceitos relacionados a armazenamento eletrônico de dados que serão explorados ao longo do trabalho. 
+\paragraph{} Mostram-se a seguir, conceitos relacionados a armazenamento eletrônico de dados que serão explorados ao longo do trabalho.
 
 \subsection{Dados Estruturados e Não-Estruturados}
 
@@ -104,11 +103,17 @@ Alguns destes campos podem permitir a associação entre registros em diferentes
 
 \paragraph{} A quantidade de atributos em um registro determina a sua dimensionalidade. Diz-se que o conjunto de dados é esparso quando dois registros aleatórios estão sempre distantes no espaço multidimensional formado por seus atributos.
 
-\paragraph{} Além disso, os atributos podem ser mapeados a tipos de dados. Tipos impõem restrições nas operações que podem ser realizadas nos atributos, e definem o formato de armazenamento da informação aos dados.
+\subsection{Tipos}
 
-\paragraph{} De acordo com Zhang\cite{zhang2019sato} e Donahue\cite{donahue1979semantics}, os tipos de dados para uma coluna de banco de dados podem ser atômicos ou semânticos. 
+\paragraph{} Atributos podem especificar tipos de dados. Tipos definem como a informação é armazenada e quais processamentos podem ser realizados.
 
-\paragraph{} Tipos atômicos são aqueles que definem o formato de armazenamento do dado: Inteiros, cadeias de caracteres (string), variáveis booleanas são exemplos de tipos atômicos. Esses tipos não dependem da existência e do contexto do dado para sua definição e em alguns casos podem ser extraidos dos metadados do registro.
+\paragraph{} De acordo com Zhang\cite{zhang2019sato} e Donahue\cite{donahue1979semantics}, os tipos de dados para uma coluna de banco de dados podem ser atômicos ou semânticos.
+
+\subsubsection{Tipos Atômicos}
+
+\paragraph{} Tipos atômicos são aqueles que definem o formato de armazenamento do dado no banco de dados: Inteiros, cadeias de caracteres (string), variáveis booleanas são exemplos de tipos atômicos. Esses tipos não dependem da existência e do contexto do dado para sua definição e em alguns casos podem ser obtidos através dos metadados do registro.
+
+\subsubsection{Tipos Semânticos}
 
 \paragraph{} Tipos semânticos dependem do contexto e do conteúdo dos dados, podendo ser extraidos a partir do conteúdo com técnicas como procura em dicionário, expressões regulares, aprendizado profundo\cite{hulsebos2019sherlock} e reconhecimento de entidades nomeadas.
 
@@ -117,9 +122,9 @@ Alguns destes campos podem permitir a associação entre registros em diferentes
 
 \subsection{Consulta}
 
-\paragraph{} Uma consulta é uma função aplicada ao banco de dados. Essa função tem por objetivo obter os valores de atributos para registros de acordo com os critérios nela definidos.
+\paragraph{} Uma consulta é uma função matemática aplicável ao banco de dados que permite obter valores de atributos para registros de acordo com os critérios nela definidos.
 
-\paragraph{} Softwares de bancos de dados que implementam o padrão ISO 9075 são comuns para bancos de dados relacionais e permitem utilizar a linguagem SQL para realização de consultas.
+\paragraph{} Softwares de bancos de dados que implementam o padrão ISO 9075 são comuns para bancos de dados relacionais e permitem utilizar a linguagem SQL para escrever consultas. Estes são popularmente conhecidos como bancos de dados SQL.
 
 \paragraph{} Exemplos desses softwares são Postgres, MySQL, SQLite e Microsoft SQL Server.
 
@@ -140,7 +145,7 @@ modificação destes registros ocorre com menor frequência e geralmente, em lot
 
 \paragraph{} Sendo assim, o objetivo da \textit{Data Warehouse} é fornecer o aparato tecnológico para a realização de análises sobre grandes volumes de dados agregados de diferentes fontes, sendo estas provenientes dos diferentes domínios de atuação da instituição.
 
-\subsection{Ferramentas e Processos de ETL} 
+\subsection{Ferramentas e Processos de ETL}
 
 \paragraph{} Ferramentas de \textit{Extract-Transform-Loading}(ETL) são soluções em software que permitem a integração de diferentes fontes de dados a uma \textit{Data Warehouse}.
 De maneira geral, um processo de ETL realiza um mapeamento entre dois bancos de dados, possibilitando a aplicação de operações sobre o conjunto mapeado com o intuito de adequá-lo ao esquema do destino.

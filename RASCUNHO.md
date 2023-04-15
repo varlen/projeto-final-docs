@@ -153,7 +153,13 @@ Continua...
 
 ##### TODO - Adicionar um desenho com o fluxograma de processos das diferentes soluções (pag 2 do paper da wiley EICHER ET AL. sobre o ARX, para os outros, será necessário fazer a imagem)
 
-
+"There has been a lot of research on techniques for anonymization (see
+Section 7 for a discussion of related work). These techniques can be broadly
+classified into generalization techniques [Aggarwal et al. 2004; LeFevre et al.
+2005], generalization with tuple suppression techniques [Bayardo and Agrawal
+2005; Samarati and Sweeney 1998], and data swapping and randomization
+techniques [Adam and Wortmann 1989; Duncan and Feinberg 1997]. In this
+article we limit our discussion to generalization techniques."
 
 
 

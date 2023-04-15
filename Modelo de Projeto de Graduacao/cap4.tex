@@ -1,17 +1,17 @@
 \chapter{Implementação}
 \label{cap4}
 
-\paragraph{} Este capítulo dedica-se a aprofundar a discussão sobre a solução criada, suas premissas, restrições e motivações. 
+\paragraph{} Este capítulo dedica-se a aprofundar a discussão sobre a solução criada, suas premissas, restrições e motivações. O capitulo se encerra com o detalhamento da solução e de seus componentes.
 
 \section{Requisitos e Limitações}
 
-\paragraph{} A principal premissa a ser levada em consideração para implementação é que a saída dos dados deve manter a mesma estrutura dos dados da entrada. Isso significa que as tabelas, as colunas, seus tipos e suas restrições relacionais, como chaves primárias e estrangeiras, serão as mesmas do banco de dados de entrada.
+\paragraph{} A principal premissa a ser levada em consideração para implementação é que a estrutura dos dados deve ser conservada. Isso significa que as tabelas, as colunas, seus tipos e suas restrições relacionais, como chaves primárias e estrangeiras, deverão manter a compatibilidade com o banco de dados de entrada.
 
-\paragraph{} Isso reduz a gama de técnicas de anonimização passiveis de utilização neste trabalho, pois algumas destas dependem de operações que alteram os tipos semânticos dos dados. Por exemplo, a já apresentada anteriormente, substituição de uma idade específica (27 anos) por uma faixa etária (20-30 anos). 
+\paragraph{} Isso reduz a gama de técnicas de anonimização passiveis de utilização neste trabalho, pois algumas destas dependem de operações que alteram os tipos semânticos dos dados. Por exemplo, a já apresentada anteriormente, substituição de uma idade específica (27 anos) por uma faixa etária (20-30 anos) para atingir k-anonimização.
 
 \paragraph{} Para colunas cujos valores são numéricos, este trabalho abre mão da fidelidade estatística por preferência a simplicidade de implementação. Colunas numéricas serão anonimizadas a partir da substituição por uma distribuição uniforme.
 
-\paragraph{} Deste modo, a ferramenta de anonimização apresentada neste trabalho visa prioritariamente atingir simplicidade de uso em detrimento de funcionalidades mais avançadas.
+\paragraph{} Deste modo, a ferramenta de anonimização projetada ao longo deste trabalho visa prioritariamente cumprir o caso de uso em que um terceiro deve ter acesso à um banco de dados análogo, preenchido com dados gerados, com mesmo sentido semantico. Mantém-se um subconjunto da utilidade original enquanto os dados são dessensibilizados, assim como se é esperado de um sistema de anonimização.
 
 \paragraph{} Ainda com intuito de simplificar a implementação, ao usar componentes cuja base é aprendizado de máquina, este trabalho se restringe a utilizar modelos prontos ao invés de treinar seus próprios modelos.
 
@@ -19,24 +19,23 @@
 
 \section{Tecnologias Utilizadas}
 
-\paragraph{} O sistema implementado é capaz de gerar um banco de dados relacional anonimizado a partir de um banco de dados original, a partir da substituição dos dados reais por dados gerados a partir dos tipos e estrutura originais.
+\paragraph{} O sistema implementado é capaz de gerar um banco de dados relacional anonimizado a partir de um banco de dados original, a partir da substituição dos dados reais por dados gerados, com mesmos tipos e estrutura.
 
-\paragraph{} A escolha de tecnologias para implementação tomou como critério a existência de bibliotecas para realizar as manipulações de dados previstas, facilidade de reuso, disponibilidade de documentação pública acessível e também a familiaridade do autor.
+\paragraph{} A escolha de tecnologias para implementação tomou como critério a existência de bibliotecas para realizar as manipulações de dados previstas, facilidade de reuso, disponibilidade de documentação pública e também a familiaridade do autor.
 
-\paragraph{} Inicialmente, este trabalho utilizou Python como linguagem principal tendo a biblioteca SQLAlchemy como provedor de acesso ao banco de dados para compatibilidade com multiplos Sistemas de Gerenciamento de Banco de Dados. No decorrer do processo de desenvolvimento, optou-se por restringir a implementação existente em um único sistema de banco de dados relacional, especificamente Postgres.
+\paragraph{} Este trabalho utilizou Python como linguagem de programação principal tendo a biblioteca SQLAlchemy como provedor de acesso ao banco de dados para compatibilidade com multiplos Sistemas de Gerenciamento de Banco de Dados. No decorrer do processo de desenvolvimento, optou-se por restringir a implementação inicial existente em um único sistema de banco de dados relacional, especificamente Postgres.
 
 \paragraph{} Visando-se a expansibilidade futura, o código foi implementado de forma a definir pontos de extensão que permitem à um usuário interessado adicionar compatibilidade com outros SGBDs.
 
-
 \section{Componentes}
 
-\paragraph{} Os componentes representam as unidades lógicas do software e funcionam como uma abstração de alto nível das partes do sistema. Eles realizam operações encadeadas dentro do fluxo de transformação dos dados, facilitando o entendimento da implementação.
+\paragraph{} Os componentes a seguir representam os blocos lógicos do software e funcionam como abstrações de alto nível das partes do sistema, visando facilitar o entendimento da solução como um todo. Cada componente realiza operações encadeadas dentro de um fluxo único de transformação dos dados que se inicia com a leitura do banco de dados que se deseja disponibilizar de maneira a garantir a privacidade e termina com a população de um novo banco de dados. A seguir está a descrição ordenada de cada componente:
 
 \subsection{Analisador de Banco de Dados}
 
-\paragraph{} O analisador de banco de dados é o componente responsável pelo inicio do fluxo de processamento da aplicação, obtendo as informações sobre o banco de dados e seus metadados a serem armazenadas em uma estrutura de dados comum.
+\paragraph{} O analisador de banco de dados é o componente responsável pelo inicio do fluxo de processamento da aplicação, obtendo as informações sobre o banco de dados e seus metadados a serem armazenadas em uma estrutura de dados comum que será utilizada posteriormente.
 
-\paragraph{} Essa estrutura de dados pode ser serializada como um arquivo JSON para que o fluxo de processamento possa reutilizar o resultado de uma execução prévia deste componente.
+\paragraph{} Essa estrutura de dados é serializada como um arquivo de texto no formato JSON e persistida em disco. Isso permite que um passo seguinte do fluxo de processamento possa reutilizar o resultado de uma execução prévia deste componente, removendo a necessidade de um novo acesso ao banco de dados de origem.
 
 \paragraph{} O analisador de banco de dados inclui o analisador de estrutura e o analisador de tipos semânticos.
 
@@ -44,17 +43,23 @@
 
 \paragraph{} É o subcomponente do analisador de banco de dados responsável por capturar o desenho do banco de dados original, trazendo para o fluxo de dados suas colunas com os respectivos tipos atômicos e tabelas, além de amostras e estatísticas dos dados, a partir da realização das consultas necessarias para obtenção destas informações.
 
+\paragraph{} Este componente deve ser disponibilizado em uma implementação própria para cada dialeto de banco de dados a ser suportado.
+
+\paragraph{} Isso é uma restrição causada pelo fato de que cada dialeto de banco de dados possui o seus próprios detalhes de implementação para além da especificação SQL e nem todos os comandos são universalmente compatíveis.
+
 \subsubsection{Analisador de Tipos Semânticos}
 
 \paragraph{} O analisador de tipos semânticos é o componente responsável por obter o significado de uma coluna dentro do contexto das informações presentes no banco de dados a partir de suas amostras e é aplicado em colunas textuais para permitir a futura geração de dados semanticamente coerentes com o banco de dados original.
 
 \paragraph{} Este processo pode ser feito a partir das tecnicas previamente apresentadas como busca em dicionário e expressão regulares. Porém, estas tecnicas apresentam limitações que as tornam inconvenientes para obtenção de alguns tipos semânticos importantes como endereço, etc.
 
-\paragraph{} Como uma tentativa de contornar este problema e melhorar a inferência de tipos semânticos, este componente utiliza uma solução de aprendizado de máquina externa. 
+\paragraph{} Como uma tentativa de contornar este problema e melhorar a inferência de tipos semânticos, este componente utiliza uma solução externa criada a partir de técnicas de aprendizado de máquina.
 
-\paragraph{} Esta solução, chamada SATO\cite{zhang2019sato}, é integrada à solução final a partir de requisições HTTP. Utilizou-se um modelo pré-treinado, incluido no repositório do SATO chamado Type78.
+\paragraph{} Este sistema externo, chamado SATO\cite{zhang2019sato}, é integrada à solução final a partir de um ponto de acesso HTTP. Para cada tabela do banco de origem, o analisador de tipos semânticos cria uma amostra no formato CSV contendo um subconjunto dos seus registros e a envia para a rota de classficação do SATO. Utilizou-se um modelo pré-treinado, incluido no repositório do SATO chamado Type78..
 
 \paragraph{} Desta forma, é possível obter o tipo semântico de colunas que não poderiam ser processadas apenas com técnicas deterministicas.
+
+\paragraph{} A classificação semântica de cada coluna pode então ser utilizada em etapas seguintes do fluxo para geração de dados analogos.
 
 \subsection{Gerador de Dados}
 
