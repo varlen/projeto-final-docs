@@ -29,7 +29,9 @@
 
 \section{Componentes}
 
-\paragraph{} Os componentes a seguir representam os blocos lógicos do software e funcionam como abstrações de alto nível das partes do sistema, visando facilitar o entendimento da solução como um todo. Cada componente realiza operações encadeadas dentro de um fluxo único de transformação dos dados que se inicia com a leitura do banco de dados que se deseja disponibilizar de maneira a garantir a privacidade e termina com a população de um novo banco de dados. A seguir está a descrição ordenada de cada componente:
+\paragraph{} Os componentes a seguir são os blocos lógicos do software e representam abstrações de alto nível das partes do sistema, visando facilitar o entendimento da solução como um todo.
+
+\paragraph{} Cada componente realiza operações encadeadas dentro de um fluxo único de transformação dos dados que se inicia com a leitura do banco de dados que se deseja disponibilizar de maneira a garantir a privacidade e termina com a população de um novo banco de dados. A seguir está a descrição ordenada de cada componente:
 
 \subsection{Analisador de Banco de Dados}
 
@@ -55,15 +57,34 @@
 
 \paragraph{} Como uma tentativa de contornar este problema e melhorar a inferência de tipos semânticos, este componente utiliza uma solução externa criada a partir de técnicas de aprendizado de máquina.
 
-\paragraph{} Este sistema externo, chamado SATO\cite{zhang2019sato}, é integrada à solução final a partir de um ponto de acesso HTTP. Para cada tabela do banco de origem, o analisador de tipos semânticos cria uma amostra no formato CSV contendo um subconjunto dos seus registros e a envia para a rota de classficação do SATO. Utilizou-se um modelo pré-treinado, incluido no repositório do SATO chamado Type78..
+\paragraph{} Este sistema externo, chamado SATO\cite{zhang2019sato}, é integrada à solução final a partir de chamadas HTTP. Para cada tabela do banco de origem, o analisador de tipos semânticos cria uma amostra no formato CSV contendo um subconjunto dos seus registros e a envia para a rota de classficação do SATO. Utilizou-se um modelo pré-treinado, incluido no repositório do SATO, chamado Type78.
 
 \paragraph{} Desta forma, é possível obter o tipo semântico de colunas que não poderiam ser processadas apenas com técnicas deterministicas.
 
-\paragraph{} A classificação semântica de cada coluna pode então ser utilizada em etapas seguintes do fluxo para geração de dados analogos.
+\paragraph{} A classificação semântica de cada coluna pode então ser utilizada em etapas seguintes do fluxo para geração de dados análogos.
+
+\subsubsection{Extrator Numérico}
+
+\paragraph{} Para colunas de tipos numéricos, há um processamento que visa substituir o conjunto de dados originais com um conjunto cuja distribuição é análoga.
+
+\paragraph{} Para isso, coletam-se amostras do conjunto original. Essas amostras são ordenadas. Um número aleatório é sorteado de uma distribuição uniforme entre 0 e 1 e multiplicado pelo número de amostras.
+
+\paragraph{} A parte inteira deste número sorteado e escalado é utilizada como índice para acessar uma das amostras ordenadas do conjunto original.
+
+\paragraph{} Realiza-se então a interpolação linear dessa amostra e da amostra seguinte, com pesos proporcionais a parte fracionária do número índice. Essa operação gera um novo número que é armazenado em um vetor.
+
+\paragraph{} Esse processo é repetido até gerar um novo conjunto de números que caracteriza o conjunto numérico original. Quando ocorre a geração de dados, este novo conjunto passa pelo mesmo processo para ser expandido e gerar o conteúdo de uma coluna numérica anonimizada.
+
+\paragraph{} Um estudo aprofundado visando discutir valores ótimos para o tamanho do conjunto caracterizador e também das alterações nas funções estatísticas está fora do escopo deste trabalho e será deixada para eventuais continuações.
 
 \subsection{Gerador de Dados}
 
-\paragraph{} O Gerador de dados é o componente responsável pela geração da carga de saída do fluxo de processamento. 
+\paragraph{} O Gerador de dados é o componente responsável pela geração da carga de saída do fluxo de processamento.
 
-\paragraph{} Este toma como entrada as especificações geradas pelos componentes anteriores e utiliza como parâmetro para geração de novos dados, a serem armazenados em um novo banco de dados.
+\paragraph{} Este componente requer como entrada o arquivo contendo as especificações geradas pelos componentes anteriores e utiliza como parâmetro para geração da estrutura e do conteúdo de um novo banco de dados.
 
+\paragraph{} O primeiro passo do fluxo de geração de dados é a criação das tabelas e suas relações, incluindo chaves primárias e extrangeiras.
+
+\paragraph{} Então, gera-se o conteúdo das tabelas. Para colunas que não possuem um elo com outra tabela, ou seja, que não são chaves estrangeiras, o dado é gerado utilizando um gerador selecionado a partir dos seus tipos atômico e semantico.
+
+\paragraph{} As colunas cujo dado é oriundo de outra tabela a partir de uma relação têm sua criação postergada até que a coluna de origem tenha dados gerados. Os dados gerados da origem são selecionados aleatóriamente para a coluna de destino.
