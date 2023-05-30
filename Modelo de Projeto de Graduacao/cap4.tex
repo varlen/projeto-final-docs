@@ -25,7 +25,9 @@
 
 \paragraph{} Este trabalho utilizou Python como linguagem de programação principal tendo a biblioteca SQLAlchemy como provedor de acesso ao banco de dados para compatibilidade com multiplos Sistemas de Gerenciamento de Banco de Dados. No decorrer do processo de desenvolvimento, optou-se por restringir a implementação inicial existente em um único sistema de banco de dados relacional, especificamente Postgres.
 
-\paragraph{} Visando-se a expansibilidade futura, o código foi implementado de forma a definir pontos de extensão que permitem à um usuário interessado adicionar compatibilidade com outros SGBDs.
+\paragraph{} O código específico de banco de dados foi implementado de forma a definir pontos de extensão a partir de módulos. O usuário pode adicionar seus módulos implementando compatibilidade com outros sistemas de bancos de dados e definir qual módulo deverá ser utilizado ao executar o sistema.
+
+\paragraph{} O módulo de banco de dados precisa incluir um conjunto de consultas pré-definidas. Essas consultas são utilizadas para extrair amostras e metadados do banco de dados originário e devem utilizar a capacidade de introspecção específica de cada implementação de banco de dados.
 
 \section{Componentes}
 
@@ -39,27 +41,42 @@
 
 \paragraph{} Essa estrutura de dados é serializada como um arquivo de texto no formato JSON e persistida em disco. Isso permite que um passo seguinte do fluxo de processamento possa reutilizar o resultado de uma execução prévia deste componente, removendo a necessidade de um novo acesso ao banco de dados de origem.
 
-\paragraph{} O analisador de banco de dados inclui o analisador de estrutura e o analisador de tipos semânticos.
+\paragraph{} O analisador de banco de dados é composto pelo núcleo, pelo plugin de banco de dados, pelo analisador de estrutura e pelo analisador de tipos semânticos.
+
+\subsubsection{Núcleo}
+
+\paragraph{} O núcleo é o subcomponente responsável por agregar os fluxos do programa de extração, orquestrando as chamadas entre os compoenentes para compor a estrutura de dados final.
+
+\paragraph{} O núcleo é responsável por inicializar o fluxo e carregar um plugin de banco de dados.
+
+\subsubsection{Plugin de Banco de Dados}
+
+\paragraph{} O plugin de banco de dados é um módulo que contém as consultas para obtenção de metadados e amostras do banco de dados de entrada.
+
+\paragraph{} Este componente pode ter várias implementações de acordo com o banco de dados de entrada. No escopo deste trabalho, apenas a implementação do plugin para Postgres foi criada.
 
 \subsubsection{Analisador de Estrutura}
 
 \paragraph{} É o subcomponente do analisador de banco de dados responsável por capturar o desenho do banco de dados original, trazendo para o fluxo de dados suas colunas com os respectivos tipos atômicos e tabelas, além de amostras e estatísticas dos dados, a partir da realização das consultas necessarias para obtenção destas informações.
 
-\paragraph{} Este componente deve ser disponibilizado em uma implementação própria para cada dialeto de banco de dados a ser suportado.
+\paragraph{} O analisador de estrutura utilza as consultas fornecidas pelo plugin de banco de dados para obtenção de metadados.
 
-\paragraph{} Isso é uma restrição causada pelo fato de que cada dialeto de banco de dados possui o seus próprios detalhes de implementação para além da especificação SQL e nem todos os comandos são universalmente compatíveis.
 
 \subsubsection{Analisador de Tipos Semânticos}
 
 \paragraph{} O analisador de tipos semânticos é o componente responsável por obter o significado de uma coluna dentro do contexto das informações presentes no banco de dados a partir de suas amostras e é aplicado em colunas textuais para permitir a futura geração de dados semanticamente coerentes com o banco de dados original.
 
-\paragraph{} Este processo pode ser feito a partir das tecnicas previamente apresentadas como busca em dicionário e expressão regulares. Porém, estas tecnicas apresentam limitações que as tornam inconvenientes para obtenção de alguns tipos semânticos importantes como endereço, etc.
+\paragraph{} Este processo pode ser feito a partir das técnicas previamente apresentadas como busca em dicionário e expressão regulares.
 
-\paragraph{} Como uma tentativa de contornar este problema e melhorar a inferência de tipos semânticos, este componente utiliza uma solução externa criada a partir de técnicas de aprendizado de máquina.
+\paragraph{} Estas tecnicas, no entanto, apresentam limitações que as tornam inconvenientes para obtenção de alguns tipos semânticos como por exemplo o endereço.
 
-\paragraph{} Este sistema externo, chamado SATO\cite{zhang2019sato}, é integrada à solução final a partir de chamadas HTTP. Para cada tabela do banco de origem, o analisador de tipos semânticos cria uma amostra no formato CSV contendo um subconjunto dos seus registros e a envia para a rota de classficação do SATO. Utilizou-se um modelo pré-treinado, incluido no repositório do SATO, chamado Type78.
+\paragraph{} Como uma tentativa de contornar este problema e aumentar a abrangência da inferência de tipos semânticos, este componente utiliza uma solução externa criada a partir de técnicas de aprendizado de máquina.
 
-\paragraph{} Desta forma, é possível obter o tipo semântico de colunas que não poderiam ser processadas apenas com técnicas deterministicas.
+\paragraph{} O sistema externo, chamado SATO\cite{zhang2019sato}, é integrado à solução final a partir de chamadas HTTP. Para cada tabela do banco de origem, o analisador de tipos semânticos cria uma amostra no formato CSV contendo um subconjunto dos seus registros e a envia para a rota de classficação do SATO. Utilizou-se um modelo pré-treinado, incluido no repositório do SATO, chamado Type78.
+
+\paragraph{} Para compatibilidade, utilizou-se um container Docker com as dependências requeridas pelo SATO para fornecer um servidor HTTP que processa as requisições de classificação semantica.
+
+\paragraph{} Desta forma, é possível tipos semânticos de colunas em casos nos quais estes não poderiam ser obtidos.
 
 \paragraph{} A classificação semântica de cada coluna pode então ser utilizada em etapas seguintes do fluxo para geração de dados análogos.
 
@@ -84,6 +101,8 @@
 \paragraph{} Este componente requer como entrada o arquivo contendo as especificações geradas pelos componentes anteriores e utiliza como parâmetro para geração da estrutura e do conteúdo de um novo banco de dados.
 
 \paragraph{} O primeiro passo do fluxo de geração de dados é a criação das tabelas e suas relações, incluindo chaves primárias e extrangeiras.
+
+\paragraph{} Para criação da estrutura do banco de dados, suas tabelas e colunas, utilizam-se as capacidades fornecidas pelo SQLAlchemy.
 
 \paragraph{} Então, gera-se o conteúdo das tabelas. Para colunas que não possuem um elo com outra tabela, ou seja, que não são chaves estrangeiras, o dado é gerado utilizando um gerador selecionado a partir dos seus tipos atômico e semantico.
 
