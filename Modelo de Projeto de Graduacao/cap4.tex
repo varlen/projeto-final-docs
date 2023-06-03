@@ -70,13 +70,17 @@
 
 \paragraph{} Estas tecnicas, no entanto, apresentam limitações que as tornam inconvenientes para obtenção de alguns tipos semânticos como por exemplo o endereço.
 
-\paragraph{} Como uma tentativa de contornar este problema e aumentar a abrangência da inferência de tipos semânticos, este componente utiliza uma solução externa criada a partir de técnicas de aprendizado de máquina.
+\paragraph{} Como uma tentativa de contornar este problema e aumentar a abrangência da inferência de tipos semânticos, este componente utiliza uma solução externa criada a partir de técnicas de aprendizado de máquina, integrada a partir de chamadas HTTP.
 
-\paragraph{} O sistema externo, chamado SATO\cite{zhang2019sato}, é integrado à solução final a partir de chamadas HTTP. Para cada tabela do banco de origem, o analisador de tipos semânticos cria uma amostra no formato CSV contendo um subconjunto dos seus registros e a envia para a rota de classficação do SATO. Utilizou-se um modelo pré-treinado, incluido no repositório do SATO, chamado Type78.
+\paragraph{} Para cada tabela do banco de origem, o analisador de tipos semânticos cria uma amostra no formato CSV contendo um subconjunto dos seus registros e a envia para a rota de classficação do serviço externo.
+
+\paragraph{} Neste trabalho especificamente, utiliza-se uma solução chamada SATO\cite{zhang2019sato}.
+
+\paragraph{} Um modelo pré-treinado chamado type78 é responsável pela classificação semântica dentro do SATO. Este modelo é capaz de classificar dos dados em 78 rótulos semânticos pré-definidos.
 
 \paragraph{} Para compatibilidade, utilizou-se um container Docker com as dependências requeridas pelo SATO para fornecer um servidor HTTP que processa as requisições de classificação semantica.
 
-\paragraph{} Desta forma, é possível tipos semânticos de colunas em casos nos quais estes não poderiam ser obtidos.
+\paragraph{} Desta forma, é possível inferir tipos semânticos de colunas em casos nos quais estes não poderiam ser obtidos com facilidade ou precisão.
 
 \paragraph{} A classificação semântica de cada coluna pode então ser utilizada em etapas seguintes do fluxo para geração de dados análogos.
 
@@ -94,16 +98,30 @@
 
 \paragraph{} Um estudo aprofundado visando discutir valores ótimos para o tamanho do conjunto caracterizador e também das alterações nas funções estatísticas está fora do escopo deste trabalho e será deixada para eventuais continuações.
 
-\subsection{Gerador de Dados}
+\subsection{Gerador de Banco de Dados}
 
-\paragraph{} O Gerador de dados é o componente responsável pela geração da carga de saída do fluxo de processamento.
+\paragraph{} O Gerador de Banco de Dados é o programa responsável pela geração da carga de saída do fluxo de processamento.
 
-\paragraph{} Este componente requer como entrada o arquivo contendo as especificações geradas pelos componentes anteriores e utiliza como parâmetro para geração da estrutura e do conteúdo de um novo banco de dados.
+\paragraph{} Este programa requer como entradas o arquivo contendo as especificações geradas pelos componentes anteriores no formato JSON e também os parâmetros de conexão com o banco de dados de destino.
+
+\paragraph{} O arquivo de especificações é utilizado para construção da estrutura e do conteúdo de um novo banco de dados pelos componentes do gerador.
+
+\subsubsection{Construtor de Estrutura}
 
 \paragraph{} O primeiro passo do fluxo de geração de dados é a criação das tabelas e suas relações, incluindo chaves primárias e extrangeiras.
 
-\paragraph{} Para criação da estrutura do banco de dados, suas tabelas e colunas, utilizam-se as capacidades fornecidas pelo SQLAlchemy.
+\paragraph{} Para criação da estrutura do banco de dados, o arquivo de especificações é analisado. Chama-se então, a API do SQLAlchemy responsável por criar novas tabelas, suas colunas e chaves primárias com as informações de tabela e coluna especificadas.
+
+\paragraph{} Em seguida, são criadas as relações de chave extrangeira de acordo com os metadados presentes no arquivo de estrutura.
+
+\subsubsection{Gerador de Dados}
+
+\paragraph{} Após a construção da estrutura do banco de dados de destino, inicia-se o processo de geração de dados. Este processo popula as novas tabelas com dados gerados de acordo com os tipos semânticos e distribuições inferidas na etapa de extração.
 
 \paragraph{} Então, gera-se o conteúdo das tabelas. Para colunas que não possuem um elo com outra tabela, ou seja, que não são chaves estrangeiras, o dado é gerado utilizando um gerador selecionado a partir dos seus tipos atômico e semantico.
+
+\paragraph{} Para geração de dados de acordo com o tipo semântico, utiliza-se um mapeamento do conjunto de rótulos inclusos no \textit{dataset} type78 para funções geradoras de dados. Essas funções geradoras são construídas a partir das capacidades de geração providas pela biblioteca Faker.
+
+\paragraph{} Para geração de dados numéricos, cria-se um gerador de números utilizando o mesmo algoritmo utilizado no extrator. Esse algoritmo permite obter números cuja distribuição é análoga ao conjunto inicial.
 
 \paragraph{} As colunas cujo dado é oriundo de outra tabela a partir de uma relação têm sua criação postergada até que a coluna de origem tenha dados gerados. Os dados gerados da origem são selecionados aleatóriamente para a coluna de destino.
