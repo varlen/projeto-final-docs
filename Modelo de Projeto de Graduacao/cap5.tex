@@ -4,18 +4,19 @@
 \section{Dados de Teste}
 
 
-\paragraph{} Um trabalho de descoberta de bancos de dados de exemplo disponíveis em repositórios públicos foi realizado inicialmente.
+\paragraph{} A etapa inicial da avaliação foi a busca e descoberta de bancos de dados de exemplo disponíveis em repositórios públicos.
 
 \paragraph{} Os bancos de dados selecionados representam informações estruturadas de organizações comerciais fictícias.
 
-\paragraph{} Estes bancos contém informações consideradas PII como por exemplo o endereço de um cliente ou funcionário.
+\paragraph{} Estes bancos foram selecionados por conterem informações que apesar de fictícias, são consideradas PII como por exemplo o endereço de um cliente ou funcionário, permitindo assim avaliar a capacidade de geração de um conjunto de dados anonimizado do programa.
 
-\paragraph{} Específicamente os seguinte bancos de dados foram selecionados:
+\paragraph{} Um outro critério para escolha dos bancos de dados foi a presença de uma quantidade razoável de tabelas e relações entre dados.pelo
+
+\paragraph{} Os seguinte bancos de dados foram selecionados:
 
 \begin{enumerate}
     \item Northwind\cite{northwindpg} - Este banco de dados contém as informações de uma loja, incluindo clientes, funcionários e pedidos.
-    \item   \cite{sakila} - Este banco contém as informações de uma rede de locadoras de filmes, contendo tabelas como loja, cliente, pagamentos, etc.
-    \item TODO
+    \item Sakila\cite{sakila} - Este banco contém as informações de uma rede de locadoras de filmes, contendo tabelas como loja, cliente, pagamentos, etc.
 \end{enumerate}
 
 \paragraph{} Os banco de dados foram disponibilizados através de containers Docker.
@@ -24,7 +25,7 @@
 
 \paragraph{} O objetivo dos testes realizados foi validar os programas implementados em relação aos casos de uso inicialmente propostos.
 
-\paragraph{} Os seguinte critérios foram considerados para avaliação da solução proposta:
+\paragraph{} Os critérios considerados para avaliação da solução proposta foram:
 
 \begin{enumerate}
     \item A possibilidade de usar os programas criados para que o responsável por um banco de dados sensível possa fornecer um banco de dados com a mesma estrutura e dados análogos à um desenvolvedor para o propósito de desenvolver sistemas, sem o risco de vazamento dos dados originais.
@@ -33,4 +34,12 @@
 
 \section{Resultados}
 
-\paragraph{} TODO
+\paragraph{} A validação foi realizada a partir da execução do programa apresentado e a posterior inspeção do conteúdo e estrutura do banco de dados gerado.
+
+\paragraph{} O programa gerou toda estrutura de tabelas, colunas e relações existentes nos bancos de dados originais com sucesso.
+
+\paragraph{} Com relação ao conteúdo do banco de dados gerado, a percepção de significado dos dados é fortemente dependente da precisão do componente de extração semântica.
+
+\paragraph{} Como evidência do comportamento apurado no teste com o primeiro banco de dados, foi possível verificar que algumas colunas como \textit{country} e \textit{city} foram preenchidas com nomes de países e cidades, enquanto outras colunas como \textit{phone\_number} e \textit{address} foram preenchidas com números de ponto flutuante e nomes de pessoas, respectivamente.
+
+\paragraph{} aaa

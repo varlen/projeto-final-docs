@@ -11,7 +11,7 @@ Este é um trabalho majoritariamente de Engenharia de Software, contemplando um 
 
 É possível dizer que se trata de um trabalho da área de Engenharia de Dados, dada a natureza das entidades que serão manipuladas. Também serão vistos conceitos da área de Segurança Digital, além de Direito Digital e Privacidade.
 
-Assim, este projeto implementa uma nova ferramenta de anonimização e dessensibilização de código aberto.
+Assim, este projeto implementa uma nova ferramenta de código aberto para anonimização e dessensibilização de banco de dados.
 
 
 \section{Delimitação}
@@ -20,31 +20,37 @@ Assim, este projeto implementa uma nova ferramenta de anonimização e dessensib
 
 \section{Justificativa}
 
-\paragraph{} A sociedade atual existe num momento em que a conectividade é amplamente difundida e contínua aonde um indíviduo mantém-se constantemente conectado a outros individuos e instituições através de serviços digitais.
-\paragraph{} Esses serviços digitais são acessíveis via internet e acumulam um grande volume de dados sobre seus usuários. Ações indevidas habilitadas por estes dados podem trazer prejuizos para os indivíduos e para a sociedade como um todo.
+\paragraph{} A sociedade atual existe num momento em que a conectividade é contínua. Neste contexto, um indíviduo mantém-se constantemente conectado a outros individuos e instituições através de serviços digitais acessíveis via internet.
+\paragraph{} Esses serviços digitais  acumulam um grande volume de dados sobre seus usuários. Ações indevidas habilitadas por estes dados podem trazer prejuizos para os indivíduos e para a sociedade como um todo.
 \paragraph{} O risco trazido pela possibilidade de um abuso desses dados levou a criação de diversas regulações ao redor do mundo. A adaptação de instituições a essas regulações protege a sociedade mas gera uma complexidade adicional em projetos de engenharia de software, que passam a estar sob exigências mais rígidas sobre o acesso a esses dados.
 \paragraph{} Assim, surge a necessidade de ferramentas que auxiliem no cumprimento dessas regulações, protejam a privacidade dos usuários e desonerem o processo de desenvolvimento de software.
 
 
 \section{Objetivos}
 
-\paragraph{} O objetivo geral deste trabalho é implementar um software livre que permita processar um conjunto de dados tornando-o dessensibilizado, sendo desta forma possível utiliza-lo para apoiar atividades de desenvolvimento e testes de sistemas sem a preocupação com vazamento de dados por parte de terceiros.
+\paragraph{} O objetivo geral deste trabalho é implementar um software livre que permita processar um conjunto de dados tornando-o dessensibilizado, sendo desta forma possível utilizá-lo para apoiar atividades de desenvolvimento e testes de sistemas sem a preocupação com vazamento de dados por parte de terceiros.
 Especificamente, o software deve: (1) Remover informações que permitam associar indivíduos com um conjunto de dados; (2) Permitir a substituição de dados reais sensíveis por dados gerados a partir de estatísticas; (3)Respeitar e manter a estrutura do modelo de dados existente, alterando somente o seu conteúdo.
 
 
 \section{Metodologia}
 
-\paragraph{} TODO Como é a abordagem do assunto. Como foi feita a pesquisa, se vai houve validação, etc. Em resumo, você de explicar qual foi sua estratégia para atender ao objetivo do trabalho (tamanho do texto: livre).
+\paragraph{} Para a concepção deste trabalho, foram pesquisadas as bases conceituais de privacidade na literatura acadêmica, desde o ponto de vista social até as implicações na área de tecnologia da informação.
+
+\paragraph{} Com este arcabouço teórico montado, o trabalho constrói então uma visão geral de softwares livres existentes em repositórios públicos para realização de atividades relacionadas à anonimização de dados.
+
+\paragraph{} Dado o panorâma de ferramentas existentes, o trabalho apresenta requisitos e arquitetura de um novo programa de anonimização, que visa manter a integridade estrutural dos dados.
+
+\paragraph{} Por fim, são apresentados os testes realizados na implementação criada e possíveis melhorias futuras.
 
 
 \section{Descrição}
 
-\paragraph{}No capítulo 2 será feita a apresentação introdutória sobre privacidade, conceitos associados e suas relevâncias no contexto socioeconômico contemporâneo.
+\paragraph{}O capítulo 2 introduz as bases conceituais deste trabalho, como privacidade, conceitos associados e suas relevâncias no contexto socioeconômico contemporâneo.
 
-\paragraph{}O capítulo 3 se dedica a apresentar a interseção do assuntos da engenharia e da privacidade de dados, trazendo um panorama das definições e técnicas existentes. Além disso, o capítulo também discute ferramentas existentes, limitadas a aquelas cuja licença garante a abertura do código-fonte, com o intuito de prospectar as funcionalidades fornecidas por esses programas e possíveis cenários de aplicação.
+\paragraph{}O capítulo 3 se dedica a apresentar a interseção do assuntos da engenharia e da privacidade de dados, trazendo um panorama das definições, técnicas e ferramentas existentes.
 
 \paragraph{}O capítulo 4 propõe um software a ser construído e define as suas especificações, mostrando as decisões técnicas tomadas, a arquitetura e explicando seus diferentes componentes.
 
-\paragraph{}O capítulo 5 explica como foi realizado o processo de validação do software construído e demonstra seus casos de uso.
+\paragraph{}O capítulo 5 explica como foi realizado o processo de validação do software construído e demonstra sua utilização.
 
-\paragraph{}O capítulo 6 apresenta a conclusão deste trabalho.
+\paragraph{}O capítulo 6 apresenta a conclusão deste trabalho, incluindo suas implicações e possibilidades futuras.
