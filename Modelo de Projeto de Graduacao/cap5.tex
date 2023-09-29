@@ -1,8 +1,7 @@
 \chapter{Validação}
 \label{cap5}
 
-\section{Dados de Teste}
-
+\section{Metodologia}
 
 \paragraph{} A etapa inicial da avaliação foi a busca e descoberta de bancos de dados de exemplo disponíveis em repositórios públicos.
 
@@ -21,6 +20,8 @@
 
 \paragraph{} Os banco de dados foram disponibilizados através de containers Docker.
 
+\paragraph{} Também foram criados \textit{scripts} auxiliares contendo as variáveis de ambiente necessárias para execução do programa, contendo as configurações de caminho e conexão com os bancos de dados de origem e destino.
+
 \section{Objetivos}
 
 \paragraph{} O objetivo dos testes realizados foi validar os programas implementados em relação aos casos de uso inicialmente propostos.
@@ -34,12 +35,22 @@
 
 \section{Resultados}
 
-\paragraph{} A validação foi realizada a partir da execução do programa apresentado e a posterior inspeção do conteúdo e estrutura do banco de dados gerado.
+\paragraph{} A validação foi realizada a partir da execução do programa apresentado e a posterior inspeção do arquivo de metadados além da estrutura e conteúdo do banco de dados gerado.
 
-\paragraph{} O programa gerou toda estrutura de tabelas, colunas e relações existentes nos bancos de dados originais com sucesso.
+\subsection{Northwind}
+
+\paragraph{} Durante o teste com o banco de dados Northwind, o programa gerou toda estrutura de tabelas, colunas e relações existentes com sucesso.
 
 \paragraph{} Com relação ao conteúdo do banco de dados gerado, a percepção de significado dos dados é fortemente dependente da precisão do componente de extração semântica.
 
-\paragraph{} Como evidência do comportamento apurado no teste com o primeiro banco de dados, foi possível verificar que algumas colunas como \textit{country} e \textit{city} foram preenchidas com nomes de países e cidades, enquanto outras colunas como \textit{phone\_number} e \textit{address} foram preenchidas com números de ponto flutuante e nomes de pessoas, respectivamente.
+\paragraph{} Como evidência do comportamento apurado no teste neste primeiro banco de dados, foi possível verificar que algumas colunas como \textit{country} e \textit{city} foram preenchidas com nomes de países e cidades, enquanto outras colunas como \textit{phone\_number} e \textit{address} foram preenchidas errôneamente com números de ponto flutuante e nomes de pessoas, respectivamente.
 
-\paragraph{} aaa
+\subsection{Sakila}
+
+\paragraph{} O teste com o segundo banco de dados evidenciou correções necessárias no código-fonte para processar corretamente colunas cujo tipo definido na tabela é \textit{decimal} além de trabalhar com colunas cujo tipo foi definido pelo usuário.
+
+\paragraph{} A coluna \textit{rating} da tabela \textit{film} foi criada como uma coluna de tipo definido pelo usuário. Isso significa que o seu tipo foi criado na inicialização do banco de dados e não existe por padrão no motor do banco de dados.
+
+\paragraph{} Como forma de suportar parcialemente tipos definidos pelo usuário, a aplicação foi modificada para tratar estes tipos da mesma maneira que o tipo nativo \textit{text}.
+
+\paragraph{} Esta alteração permite trabalhar com tipos criados pelo usuário desde que sejam textuais e enumerações, como é o caso no banco de dados processado neste teste, mas não cobre toda a gama de possibilidades de criação de tipos, não sendo aplicável quando o tipo definido pelo usuário é uma agregação de tipos numéricos.

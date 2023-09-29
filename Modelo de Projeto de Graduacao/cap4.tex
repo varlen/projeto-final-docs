@@ -11,6 +11,8 @@
 
 \paragraph{} Para colunas cujos valores são numéricos, este trabalho abre mão da fidelidade estatística por preferência a simplicidade de implementação. Colunas numéricas serão anonimizadas a partir da substituição por uma distribuição uniforme.
 
+\paragraph{} Além disso, a ferramentada proposta não cobre toda a gama de tipos nativos implementados pelo sistema de gerenciamento de banco de dados. Como regra geral, para casos em que não é possível definir critérios claros para distinção do conteúdo e posterior geração de dados, a coluna será preenchida com valores nulos. Na prática, colunas cujo conteúdo é binário, como por exemplo colunas que armazenam imagens ou arquivos, não serão geradas no banco de dados final.
+
 \paragraph{} Deste modo, a ferramenta de anonimização projetada ao longo deste trabalho visa prioritariamente cumprir o caso de uso em que um terceiro deve ter acesso à um banco de dados análogo, preenchido com dados gerados, com mesmo sentido semantico. Mantém-se um subconjunto da utilidade original enquanto os dados são dessensibilizados, assim como se é esperado de um sistema de anonimização.
 
 \paragraph{} Ainda com intuito de simplificar a implementação, ao usar componentes cuja base é aprendizado de máquina, este trabalho se restringe a utilizar modelos prontos ao invés de treinar seus próprios modelos.
