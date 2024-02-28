@@ -54,18 +54,17 @@ no banco de dados; deslocamento de valores de instantes de tempo e intervalos de
 
 \subsection{Presidio}
 
-\paragraph{} Presidio é um software livre criado pela Microsoft\cite{presidio} com o intuito de ajudar no gerenciamento de informações textuais sensíveis. 
-Suas funcionalidades provém capacidades analíticas e anonimização para dados como nomes, lugares, números de documentos específicos dos Estados Unidos e Reino Unido, 
-dados financeiros, carteiras de criptomoedas, dentre outros. 
+\paragraph{} Presidio é um software livre criado pela Microsoft\cite{presidio} com o intuito de ajudar no gerenciamento de informações textuais sensíveis.
+Suas funcionalidades provém capacidades analíticas e anonimização para dados como nomes, lugares, números de documentos específicos dos Estados Unidos e Reino Unido,
+dados financeiros, carteiras de criptomoedas, dentre outros.
 
-\paragraph{} O programa é capaz de extrair entidades de dados textuais não estruturados a partir de listas, expressões regulares ou processamento de linguagem natural (NER). 
+\paragraph{} O programa é capaz de extrair entidades de dados textuais não estruturados a partir de listas, expressões regulares ou processamento de linguagem natural (NER).
 É possível expandir suas funcionalidades através da API ou alterando-se o código-fonte, permitindo que seu uso seja adaptado a diferentes necessidades instituicionais.
 
 \paragraph{} Ao operar sobre um conjunto de dados textuais não-estruturados, a ferramenta detecta automaticamente informações pessoais (PII) e gera uma análise sobre os tipos de informações
 contendo uma pontuação que pode ser utilizada para inferir a qualidade do texto anonimizado. A saída deste processo de anonimização são os dados estruturados com as informações pessoais suprimidas.
 
-\paragraph{} No momento da escrita deste trabalho, a ferramenta também oferece em caráter experimental a possibilidade de detectar textos e aplicar anonimização por supressão em imagens 
-a partir de reconhecimento óptico de caracteres.
+\paragraph{} No momento da escrita deste trabalho, a ferramenta também oferece em caráter experimental a possibilidade de detectar textos e aplicar anonimização por supressão em imagens a partir de reconhecimento óptico de caracteres.
 
 \paragraph{} A ferramenta possui suporte a API REST; aos mecanismos de armazenamento em nuvem Azure Blob Storage e S3; aos sistemas de fluxos Kafka e Azure Event Hub como entradas de dados.
 Sua saída pode ser enviada para bancos de dados MySQL, MSSQL e Postgres ou nos mecanismos de amazenamento e fluxos previamente listados.
@@ -78,11 +77,23 @@ Sua saída pode ser enviada para bancos de dados MySQL, MSSQL e Postgres ou nos 
 os modelos para lingua inglesa são suportados.\cite{presidio-issue303} Dentre as modificações necessárias para utilização da ferramenta no contexto nacional está a utilização de um modelo
 adequado com suporte a lingua portuguesa. Este modelo está disponível no site da biblioteca\cite{spacy}, assim como modelos para Alemão, Francês, Espanhol, dentre outros idiomas.
 
-\paragraph{} Os principais serviços realizam a Análise, Anonimização, Anonimização de Imagens e Reconhecimento Óptico de Caracteres. 
-Além disso, também existem serviços únicos para API e agendamento, além do acesso de leitura e escrita as fontes de dados. 
+\paragraph{} Os principais serviços realizam a Análise, Anonimização, Anonimização de Imagens e Reconhecimento Óptico de Caracteres.
+Além disso, também existem serviços únicos para API e agendamento, além do acesso de leitura e escrita as fontes de dados.
 
-\paragraph{} Esta arquitetura fornece resiliência entre diferentes serviços através de \textit{circuit-breaking}, tentativas, balanceamento de carga, dentre outras técnicas. 
+\paragraph{} Esta arquitetura fornece resiliência entre diferentes serviços através de \textit{circuit-breaking}, tentativas, balanceamento de carga, dentre outras técnicas.
 O uso de containers diminui a ocorrencia de problemas no gerenciamento de dependências\cite{merkel2014docker} uma vez que estas e suas respectivas configurações estarão inclusas nas imagens utilizadas para montagem, reduzindo o esforço de implementação.
+
+\subsection{Clickhouse Obfuscator}
+
+\paragraph{} Clickhouse Obfuscator\cite{clickhouse-obfuscator} é uma ferramenta de obfuscação que funciona através da linha de comando, operando sobre um arquivo textual que contém uma tabela como por exemplo um arquivo CSV ou TSV.
+
+\paragraph{} Esta ferramenta foi criada para suprir a necessidade de distribuição de conjuntos de dados anonimizados para reprodutibilidade dos testes de performance do banco de dados ClickHouseDB, permitindo assim o uso de dados análogos ao conjunto de dados de Analytics Web sensível utilizado para testes internos.
+
+\paragraph{} A ferramenta preserva as características de cardinalidade e distribuição de probabilidade de tipos numéricos, cadeias de caracteres e também a magnitude da diferença entre números.
+
+\paragraph{} Além disso, a ferramenta também mantém valores específicos de data e também os números 0, 1 e -1, o que pode levar a exposição de dados booleanos codificados numericamente. Segundo sua documentação não há garantias de que dados que não deveriam ser publicados não sejam retidos no resultado final.
+
+\paragraph{} Como uma restrição de funcionamento, para os resultados esperados, é necessário que o arquivo de entrada contenha ao menos 1000 linhas.
 
 
 \section{Extração de Tipos Semânticos}
@@ -105,7 +116,7 @@ Nesta sessão, são mostradas técnicas e softwares que permitem realizar esta t
 \paragraph{} É possível utilizar expressões regulares a partir de bibliotecas inclusas em diversas linguagens de programação como Python, C\#, Perl, dentre outras.
 
 \paragraph{} Tipos semânticos que seguem um padrão único, como por exemplo um número de CPF, podem ser detectados a partir de expressões regulares.
- 
+
 \subsection{SATO}
 
 \paragraph{} SATO\cite{zhang2019sato} é um modelo de aprendizado de máquina que realiza predição de tipos semanticos.
